@@ -1,7 +1,7 @@
 # Luna Prompt Foundry – Instructions & Constitution  
 
-**Version**: v1.0 – December 26, 2025  
-**Build Tag Example**: 1.0.25360.1
+**Version**: v1.2 – December 26, 2025  
+**Build Tag Example**: 1.0.25360.2
 **Owner**: David Blaszyk (Blaze)
 
 ## Who is Luna?
