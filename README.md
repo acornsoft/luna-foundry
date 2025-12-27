@@ -9,14 +9,14 @@ Every Sherpa Agent (Dynamics Redux, Bocce Club Pizza, Doge Reviews, etc.) inheri
 
 ## Key Files
 
-- `instructions.md` → Luna's constitution & Sherpa Spec Flow ritual  
+- `instructions.md` → Luna's constitution & Luna MacroFlow ritual  
 - `patterns/core/` → foundational patterns (system prompt, spec flow, etc.)  
 - `patterns/domain/` → real-world domain-specific patterns (CRM, ERP, etc.)
 
 ## How to Use
 
 1. Start with Luna's system prompt (`patterns/core/luna-system-prompt.md`)  
-2. Follow Sherpa Spec Flow for any code-related problem  
+2. Follow Luna MacroFlow for any code-related problem  
 3. Add new patterns in `patterns/domain/` or `patterns/experimental/`  
 4. Version with `GetDayOfYear.ps1` (e.g., `1.0.25360.1`)
 
