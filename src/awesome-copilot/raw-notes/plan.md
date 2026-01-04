@@ -1,0 +1,5 @@
+# Plan
+
+Architecture: Vertical slices—one Function per MacroFlow phase, orchestrated by a main HTTP-triggered Function (Minimal APIs for simplicity over ceremony). Patterns: Strategy for phase handlers, Repository for Foundry storage (Azure Blob/Cosmos). Trade-offs: Functions over Minimal API for auto-scaling/event triggers; downside is cold starts (mitigate with premium plan). Tech: .NET 10, Azure SDK, xAI Grok client (server-side tool calling). ADR: "Prefer Azure Functions for MCP to enable hybrid serverless/orchestrated flows."
+
+D365 Plan: Based on EPICs FBU 1c Release 1 (Canada) and Release 2 (USA), implement One Customer model for account unification. Architecture: Vertical slices for account mods, form updates, permission rules. Patterns: Minimal APIs for Web APIs, Repository for entity storage. Trade-offs: In-place mods vs migration; choose in-place for minimal disruption. Tech: D365 plugins, PowerApps, Power BI integrations. ADR: "Use existing D365 solution as base, extend with 1C flags and visibility rules for unification."

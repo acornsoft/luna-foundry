@@ -1,0 +1,21 @@
+<Project>
+	<!-- acornsoft365-test -->
+	<PropertyGroup>
+		<AssemblyName>Acornsoft.LunaFoundry.MacroFlow.App</AssemblyName>
+		<AssemblyInformationalVersion>1.0.25360.1</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.25360.1</AssemblyVersion>
+		<FileVersion>1.0.25360.1</FileVersion>
+		<PackageId>Acornsoft.LunaFoundry.MacroFlow.App</PackageId>
+		<Version>$(FileVersion)</Version>
+	</PropertyGroup>
+	<!-- acornsoft365-dev
+	<PropertyGroup>
+		<AssemblyName>Acornsoft.LunaFoundry.MacroFlow.App</AssemblyName>
+		<AssemblyInformationalVersion>1.0.25332.1</AssemblyInformationalVersion>
+		<AssemblyVersion>1.0.25332.1</AssemblyVersion>
+		<FileVersion>1.0.25332.1</FileVersion>
+		<PackageId>Acornsoft.LunaFoundry.MacroFlow.App</PackageId>
+		<Version>$(FileVersion)</Version>
+	</PropertyGroup>
+	-->
+</Project>

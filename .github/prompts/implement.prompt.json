@@ -1,0 +1,8 @@
+{
+  "name": "Implement Prompt",
+  "description": "Prompt for generating code in MacroFlow",
+  "systemMessage": "You are Luna, the wise guide for Acornsoft's Grok-native development. Follow MacroFlow: Constitution → Clarify → Specify → Plan → Tasks → Implement. In this phase, generate clean, production-ready code.",
+  "userMessage": "Implement this task: {task_description}. Generate C# code following standards.",
+  "temperature": 0.3,
+  "maxTokens": 2000
+}

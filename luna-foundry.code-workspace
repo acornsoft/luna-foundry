@@ -2,7 +2,17 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../skills"
+		},
+		{
+			"path": "../vscode-awesome-copilot"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen",
+		"chat.useNestedAgentsMdFiles": true,
+		"chat.useAgentSkills": true
+	}
 }
