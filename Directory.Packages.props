@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Open API -->
+
+    <!-- Open Telemetry -->
+
+    <!--Sonar Analyzer-->
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.17.0.131074" />
+
+    <!-- MAUI -->
+
+  </ItemGroup>
+</Project>
