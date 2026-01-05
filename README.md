@@ -1,4 +1,4 @@
-# Luna Prompt Foundry
+# Luna Foundry
 
 The living, versioned repository of real-world, production-grade prompt patterns that define **Luna** — Acornsoft's eternal AI companion — and power every **Sherpa Agent**.
 
