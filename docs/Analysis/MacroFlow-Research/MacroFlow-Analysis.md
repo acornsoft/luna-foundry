@@ -102,25 +102,26 @@ public domain releases on GitHub. Facilitates portable skills across tools.
 
 ## High-Level Plan for Luna Prompt Foundry
 
-The high-level plan applies MacroFlow to the complete implementation of Luna Prompt Foundry, ensuring dynamic orchestration of AI prompts across modalities (Grok Desktop, VS Code, VS 2026). It focuses on embedding MacroFlow as the core ritual for consistency, with phases driving from constitution to implementation.
+The high-level plan applies MacroFlow to the complete implementation of Luna Prompt Foundry, ensuring dynamic orchestration of AI prompts across modalities (Grok Desktop, VS Code, VS 2026). It focuses on embedding MacroFlow as the core ritual for consistency, with phases driving from constitution to implementation. Informed by recent research (Conversation-003.md), it incorporates agent skills for VS Code Copilot integration and CLI workflows.
 
 1. **Constitution**: Load Acornsoft manifesto, Grok-native constraints, and project context for Luna Foundry.
-2. **Clarify**: Identify requirements for Copilot integration, app sync, and Markdown-driven schemas.
-3. **Specify**: Define functional specs (e.g., .github/copilot-instructions.md, sync schemas) and non-functional (secure, low-latency).
-4. **Plan**: Choose vertical slice architecture (Markdown-first, Function for scale), ADR-style trade-offs.
-5. **Tasks**: Break into user stories (e.g., "As a developer, integrate MacroFlow into Copilot").
-6. **Implement**: Generate C# code for Azure Function, Markdown files for instructions and schemas.
+2. **Clarify**: Identify requirements for Copilot integration, app sync, and Markdown-driven schemas, using parallel skills like Constitution and Clarify agents.
+3. **Specify**: Define functional specs (e.g., .github/copilot-instructions.md, sync schemas, agent skills) and non-functional (secure, low-latency).
+4. **Plan**: Choose vertical slice architecture (Markdown-first, Function for scale), ADR-style trade-offs, leveraging skills for orchestration.
+5. **Tasks**: Break into user stories (e.g., "As a developer, integrate MacroFlow into Copilot via skills").
+6. **Implement**: Generate C# code for Azure Function, Markdown files for instructions, agents, prompts, and skills.
 
 ## Detailed Plan: Markdown-Focused Tasks
 
-This detailed plan outlines a series of tasks centered on Markdown development for Luna Prompt Foundry, prioritizing quick wins in Copilot customization and sync schemas before scaling to code.
+This detailed plan outlines a series of tasks centered on Markdown development for Luna Prompt Foundry, prioritizing quick wins in Copilot customization and sync schemas before scaling to code. Updated with insights from Conversation-003.md to include agent skills creation.
 
 1. **Task 1: Create .github/copilot-instructions.md** - Draft and commit the file with MacroFlow phases, personality, and constraints from Luna-Prompt-Foundry.md, ensuring neutral phrasing to avoid Grok refusals.
 2. **Task 2: Develop Sync Schema Markdown** - Create Markdown documents defining JSON schemas for shared state (e.g., sessionId, phases, context) to enable app collaboration.
 3. **Task 3: Outline Azure Function Mods in Markdown** - Document required changes (e.g., add HttpClient for Grok API polling) in a spec file, keeping implementation light.
-4. **Task 4: Integrate with Existing Foundry Structure** - Update agents/instructions/prompts/skills Markdown files to reference MacroFlow, ensuring VS Code Copilot compliance.
-5. **Task 5: Test and Iterate Markdown in Copilot** - Commit changes, reload VS Code, and test queries to validate MacroFlow enforcement.
-6. **Task 6: Document Baseline Requirements** - Add a Markdown section summarizing importance, fitting into Acornsoft ecosystem for unified AI workflows.
+4. **Task 4: Create Core Agent Skills** - Develop SKILL.md files for recommended skills: Project Planner, Code Analyzer, Code Generator, Unit Tester, Refactor/Optimizer, Debugger/Fixer, Documenter in .github/skills/.
+5. **Task 5: Update Agents, Instructions, Prompts** - Integrate MacroFlow references into agents/ (e.g., Luna.agent.md, core/ phases), instructions/ (phase guides), prompts/ (JSON for phases).
+6. **Task 6: Test and Iterate Markdown in Copilot** - Commit changes, reload VS Code, and test queries to validate MacroFlow enforcement via skills.
+7. **Task 7: Document Baseline Requirements** - Add a Markdown section summarizing importance, fitting into Acornsoft ecosystem for unified AI workflows.
 
 ## Insights from Recent Research Conversation (Conversation-003.md)
 
