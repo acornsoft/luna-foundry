@@ -100,26 +100,6 @@ enables faster iteration on AI patterns. Adds agent customization for VS Code.
 - **Organizational Impacts**: Enhances Acornsoft's AI capabilities, supports
 public domain releases on GitHub. Facilitates portable skills across tools.
 
-## Architecture Decision Records
-
-ADRs are external documents following the format from
-[adr.github.io](https://adr.github.io). The table below summarizes associated ADRs
-in reverse chronological order (newest first).
-
-| Date | Number | Title | Status | File |
-| ------ | -------- | ------- | -------- | ------ |
-| 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | adr-011.md |
-| 2026-01-06 | 010 | Implement Baseline Azure Function for Cross-App Sync | Accepted | adr-010.md |
-| 2026-01-06 | 009 | Integrate MacroFlow into GitHub Copilot via Repo Instructions | Accepted | adr-009.md |
-| 2026-01-03 | 008 | Make Skills Compliant with VS Code Agent Skills Standard | Accepted | adr-008.md |
-| 2026-01-03 | 007 | Refine Document Generation Skill via Eat-Your-Own-Dog-Food Approach | Accepted | adr-007.md |
-| 2026-01-03 | 006 | Document Foundry Directory Structure with Mermaid Diagram | Accepted | adr-006.md |
-| 2026-01-03 | 005 | Add Document Generator Skill for Branded Deliverables | Accepted | adr-005.md |
-| 2026-01-03 | 004 | Add Forensic Coder Skill for Codebase Analysis | Accepted | adr-004.md |
-| 2026-01-03 | 003 | Adopt Hybrid Markdown/JSON for Agents | Accepted | adr-003.md |
-| 2026-01-03 | 002 | Separate Development and Deployment for Agents | Accepted | adr-002.md |
-| 2026-01-01 | 001 | Adopt MacroFlow Phases | Accepted | adr-001.md |
-
 ## High-Level Plan for Luna Prompt Foundry
 
 The high-level plan applies MacroFlow to the complete implementation of Luna Prompt Foundry, ensuring dynamic orchestration of AI prompts across modalities (Grok Desktop, VS Code, VS 2026). It focuses on embedding MacroFlow as the core ritual for consistency, with phases driving from constitution to implementation.
@@ -141,6 +121,26 @@ This detailed plan outlines a series of tasks centered on Markdown development f
 4. **Task 4: Integrate with Existing Foundry Structure** - Update agents/instructions/prompts/skills Markdown files to reference MacroFlow, ensuring VS Code Copilot compliance.
 5. **Task 5: Test and Iterate Markdown in Copilot** - Commit changes, reload VS Code, and test queries to validate MacroFlow enforcement.
 6. **Task 6: Document Baseline Requirements** - Add a Markdown section summarizing importance, fitting into Acornsoft ecosystem for unified AI workflows.
+
+## Architecture Decision Records
+
+ADRs are external documents following the format from
+[adr.github.io](https://adr.github.io). The table below summarizes associated ADRs
+in reverse chronological order (newest first).
+
+| Date | Number | Title | Status | File |
+| ------ | -------- | ------- | -------- | ------ |
+| 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | adr-011.md |
+| 2026-01-06 | 010 | Implement Baseline Azure Function for Cross-App Sync | Accepted | adr-010.md |
+| 2026-01-06 | 009 | Integrate MacroFlow into GitHub Copilot via Repo Instructions | Accepted | adr-009.md |
+| 2026-01-03 | 008 | Make Skills Compliant with VS Code Agent Skills Standard | Accepted | adr-008.md |
+| 2026-01-03 | 007 | Refine Document Generation Skill via Eat-Your-Own-Dog-Food Approach | Accepted | adr-007.md |
+| 2026-01-03 | 006 | Document Foundry Directory Structure with Mermaid Diagram | Accepted | adr-006.md |
+| 2026-01-03 | 005 | Add Document Generator Skill for Branded Deliverables | Accepted | adr-005.md |
+| 2026-01-03 | 004 | Add Forensic Coder Skill for Codebase Analysis | Accepted | adr-004.md |
+| 2026-01-03 | 003 | Adopt Hybrid Markdown/JSON for Agents | Accepted | adr-003.md |
+| 2026-01-03 | 002 | Separate Development and Deployment for Agents | Accepted | adr-002.md |
+| 2026-01-01 | 001 | Adopt MacroFlow Phases | Accepted | adr-001.md |
 
 ### ADR [Number]: [Title]
 
@@ -165,4 +165,14 @@ Specify, Plan, Tasks, Implement.
 
 - Positive: Standardized process reduces errors and improves quality.
 - Negative: May add overhead for simple tasks; requires training.
+
+## Document Metadata
+
+- **Version**: 1.0
+- **Date**: January 6, 2026
+- **Owner**: David Blaszyk (Blaze)
+- **Build Tag**: 1.0.26006.1 (based on GetDayOfYear.ps1 for 2026-01-06)
+- **Purpose**: Comprehensive guide to MacroFlow in Luna Foundry, including ConOps, ADRs, and plans.
+- **Audience**: Acornsoft developers, AI engineers, stakeholders.
+- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, adr-001.md to adr-011.md.
 
