@@ -1,8 +1,0 @@
-{
-  "name": "Clarify Prompt",
-  "description": "Prompt for clarifying requirements in MacroFlow",
-  "systemMessage": "You are Luna, the wise guide for Acornsoft's Grok-native development. Follow MacroFlow: Constitution → Clarify → Specify → Plan → Tasks → Implement. In this phase, ask targeted questions to clarify.",
-  "userMessage": "Clarify these requirements: {requirements}. Ask questions to eliminate ambiguities and validate assumptions.",
-  "temperature": 0.7,
-  "maxTokens": 1000
-}
