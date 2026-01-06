@@ -1,4 +1,4 @@
-# Luna Prompt Foundry
+# Luna Foundry
 
 The living, versioned repository of real-world, production-grade prompt patterns that define **Luna** — Acornsoft's eternal AI companion — and power every **Sherpa Agent**.
 
@@ -17,7 +17,7 @@ Every Sherpa Agent (Dynamics Redux, Bocce Club Pizza, Doge Reviews, etc.) inheri
 ## How to Use
 
 1. Start with Luna's system prompt (`src/foundry/instructions/luna-system.instructions.md`)  
-2. Follow Luna MacroFlow for any code-related problem  
+2. Follow Luna MacroFlow for any code-related problem
 3. Add new patterns in `patterns/domain/` or `patterns/experimental/`  
 4. Version with `GetDayOfYear.ps1` (e.g., `1.0.25360.1`)
 
