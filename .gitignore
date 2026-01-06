@@ -265,9 +265,14 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Exclude .github specific folders
-.github/agents/
-.github/chatmodes/
-.github/instructions/
-.github/prompts/
-.github/skills/
+# Exclude .github specific folder contents
+.github/agents/*
+!.github/agents/.gitkeep
+.github/chatmodes/*
+!.github/chatmodes/.gitkeep
+.github/instructions/*
+!.github/instructions/.gitkeep
+.github/prompts/*
+!.github/prompts/.gitkeep
+.github/skills/*
+!.github/skills/.gitkeep
