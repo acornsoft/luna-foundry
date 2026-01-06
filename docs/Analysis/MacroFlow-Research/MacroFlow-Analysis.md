@@ -122,6 +122,19 @@ This detailed plan outlines a series of tasks centered on Markdown development f
 5. **Task 5: Test and Iterate Markdown in Copilot** - Commit changes, reload VS Code, and test queries to validate MacroFlow enforcement.
 6. **Task 6: Document Baseline Requirements** - Add a Markdown section summarizing importance, fitting into Acornsoft ecosystem for unified AI workflows.
 
+## Insights from Recent Research Conversation (Conversation-003.md)
+
+This section summarizes key insights from Conversation-003.md, a discussion on accelerating a competitive AI coding demo in VS Code using MacroFlow and agent skills.
+
+- **Agentic Architecture**: Propose layering custom agents on GitHub Copilot, shifting instructions/prompts to modular skills, with MacroFlow as the orchestrator engine for CLI-based workflows.
+- **Demo Acceleration**: Use Yeoman for VS Code extension scaffolding, AI Toolkit for prototyping agents/models, and focus on iterative testing with Copilot Chat.
+- **Agent Skills Standard**: Skills in .github/skills/ with SKILL.md (YAML metadata + instructions), evolving from individual to team/org scale.
+- **Recommended Initial Skills**: Project Planner (orchestrator), Code Analyzer, Code Generator, Unit Tester, Refactor/Optimizer, Debugger/Fixer, Documenter—forming the MacroFlow backbone.
+- **MacroFlow Phases**: Constitution (set principles/guardrails) and Clarify (understand request) as parallel first steps, feeding into downstream phases.
+- **Integration Tips**: Test in VS Code Insiders, use local models for speed, evolve skills.md organically.
+
+These insights align with Luna Foundry's focus on Markdown-driven agents and skills for VS Code Copilot compliance.
+
 ## Architecture Decision Records
 
 ADRs are external documents following the format from
@@ -174,5 +187,5 @@ Specify, Plan, Tasks, Implement.
 - **Build Tag**: 1.0.26006.1 (based on GetDayOfYear.ps1 for 2026-01-06)
 - **Purpose**: Comprehensive guide to MacroFlow in Luna Foundry, including ConOps, ADRs, and plans.
 - **Audience**: Acornsoft developers, AI engineers, stakeholders.
-- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, adr-001.md to adr-011.md.
+- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, Conversation-003.md, adr-001.md to adr-011.md.
 
