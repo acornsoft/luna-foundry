@@ -268,8 +268,6 @@ __pycache__/
 # Exclude .github specific folder contents
 .github/agents/*
 !.github/agents/.gitkeep
-.github/chatmodes/*
-!.github/chatmodes/.gitkeep
 .github/instructions/*
 !.github/instructions/.gitkeep
 .github/prompts/*
