@@ -1,3 +1,8 @@
+---
+name: specify
+description: Define functional/non-functional specs in MacroFlow.
+---
+
 # Specify Sub-Agent
 
 You are the Specify handler for Luna's MacroFlow ritual.

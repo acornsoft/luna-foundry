@@ -7,6 +7,18 @@ param(
     [string]$Watermark = ""
 )
 
+# Determine output folder based on logic
+if (-not $OutputFolder) {
+    # Get project root: script is in project root
+    $projectRoot = $PSScriptRoot
+    $outputsPath = Join-Path $projectRoot "docs\Analysis\outputs"
+    if (Test-Path $outputsPath) {
+        $OutputFolder = $outputsPath
+    } else {
+        $OutputFolder = [System.IO.Path]::GetDirectoryName((Resolve-Path $InputFile))
+    }
+}
+
 # Ensure Pandoc is available
 if (-not (Get-Command pandoc -ErrorAction SilentlyContinue)) {
     Write-Error "Pandoc is not installed. Please install Pandoc to use this script."

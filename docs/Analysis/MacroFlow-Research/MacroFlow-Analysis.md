@@ -158,15 +158,9 @@ graph TD
     B --> F[core/]
     B --> G[tools/]
     F --> H[Luna.agent.md]
-    F --> I[constitution.agent.md]
-    F --> J[clarify.agent.md]
     E --> K[macroflow-network/]
     E --> L[grok-x-insights/]
     E --> M[generate-client-report/]
-    K --> N[SKILL.md]
-    K --> O[graph.json]
-    M --> P[templates/]
-    M --> Q[examples/]
 ```
 
 These diagrams collectively provide a comprehensive visual context: the activity diagram shows the process flow, C4 diagrams depict the system architecture at various levels, and the enhanced directory diagram clarifies the organizational structure, ensuring developers can grasp the design and approach intuitively.
@@ -181,6 +175,16 @@ settings fixed for code (0.3) and creative (0.7). Development occurs in
 `src/foundry`, with deployment as a separate sync step.
 - **Assumptions**: Users have access to Grok API and are aligned with Acornsoft's
 Grok-native manifesto. VS Code Insiders is used for Agent Skills preview.
+
+### API Development Patterns
+
+Based on ADR-016, Luna Foundry enforces specific architectural patterns for API development to ensure scalability, security, and consistency:
+
+- **Enterprise/Large Web API**: CQRS (Command Query Responsibility Segregation) with MediatR for command/query separation and event handling.
+- **General Web API**: Minimal APIs with Repository pattern (using EF Core) and Specification pattern for flexible querying and business logic encapsulation.
+- **Quick Turn API**: Azure Functions for serverless, event-driven development, with built-in security (e.g., Azure AD auth), fast deployment, and reliability (e.g., retry policies, monitoring).
+
+These patterns are integrated into Plan and Implement phases, with agents guiding selection based on project scale.
 
 ### 5. Summary of Impacts
 
@@ -233,6 +237,9 @@ in reverse chronological order (newest first).
 
 | Date | Number | Title | Status | File |
 | ------ | -------- | ------- | -------- | ------ |
+| 2026-01-07 | 016 | Define Key Architectural Patterns for Luna Foundry API Development | Proposed | adr-016.md |
+| 2026-01-07 | 015 | Implement Azure DevOps Feature for Luna Foundry Pre-Requisites Tracking | Proposed | adr-015.md |
+| 2026-01-07 | 014 | Add Transition Labels to Luna Agent for MacroFlow Guidance | Accepted | adr-014.md |
 | 2026-01-06 | 013 | Integrate GitHub Repository Links in Azure DevOps Work Items | Accepted | adr-013.md |
 | 2026-01-06 | 012 | Use Azure CLI for Work Item Linkage to GitHub | Accepted | adr-012.md |
 | 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | adr-011.md |
@@ -273,11 +280,11 @@ Specify, Plan, Tasks, Implement.
 
 ## Document Metadata
 
-- **Version**: 1.0
-- **Date**: January 6, 2026
+- **Version**: 1.1
+- **Date**: January 7, 2026
 - **Owner**: David Blaszyk (Blaze)
-- **Build Tag**: 1.0.26006.1 (based on GetDayOfYear.ps1 for 2026-01-06)
+- **Build Tag**: 1.0.26007.1 (based on GetDayOfYear.ps1 for 2026-01-07)
 - **Purpose**: Comprehensive guide to MacroFlow in Luna Foundry, including ConOps, ADRs, and plans.
 - **Audience**: Acornsoft developers, AI engineers, stakeholders.
-- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, Conversation-003.md, adr-001.md to adr-011.md.
+- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, Conversation-003.md, adr-001.md to adr-016.md.
 

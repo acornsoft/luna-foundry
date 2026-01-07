@@ -13,6 +13,7 @@
 	"settings": {
 		"debug.internalConsoleOptions": "neverOpen",
 		"chat.useNestedAgentsMdFiles": true,
-		"chat.useAgentSkills": true
+		"chat.useAgentSkills": true,
+		"powershell.cwd": "luna-foundry"
 	}
 }
