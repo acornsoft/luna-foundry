@@ -138,7 +138,7 @@ if ($Client) {
     $Client = $Client.Substring(0,1).ToUpper() + $Client.Substring(1).ToLower()
 }
 
-# Set default TemplateDir to user profile Custom Office Templates
+# Set default TemplateDir to user Documents Custom Office Templates
 if (!$TemplateDir) {
     $TemplateDir = "$env:USERPROFILE\Documents\Custom Office Templates"
 }
@@ -156,7 +156,7 @@ function Get-UniqueFileName {
 }
 
 # Set default ResourcePath for images
-$projectRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
+$projectRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 $imagesDir = Join-Path $projectRoot "docs\Analysis\images"
 if (!$ResourcePath) {
     $ResourcePath = $imagesDir

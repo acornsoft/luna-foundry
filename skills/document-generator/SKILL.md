@@ -1,10 +1,85 @@
 ---
 name: document-generator
-description: Specialized skill for converting Markdown documents into professional, branded formats including DOCX, PDF, HTML, and processing Mermaid diagrams. Use this when asked to generate branded client documents from Markdown.
+description: Specialized skill for generating client-focused documents from Markdown files, converting to professional formats like DOCX, PDF, HTML with branding. Use this when asked to create branded client deliverables from existing Markdown content.
 ---
 
----
-name: document-generator
-description: Specialized skill for converting Markdown documents into professional, branded formats including DOCX, PDF, HTML, and processing Mermaid diagrams. Use this when asked to generate branded client documents from Markdown.
----
---- name: document-generator description: Specialized skill for converting Markdown documents into professional, branded formats including DOCX, PDF, HTML, and processing Mermaid diagrams. Use this when asked to generate branded client documents from Markdown. --- # Document Generator Skill  ## Overview  The Document Generator is a specialized skill for converting Markdown documents into professional, branded formats including DOCX, PDF, HTML, and processing Mermaid diagrams. It leverages PowerShell scripting and Custom Office Templates to produce client-ready deliverables.  ## Purpose  - Convert Markdown to multiple formats (DOCX, PDF, HTML) - Apply client/partner branding via templates - Process Mermaid diagrams into images - Generate final-form documents for sharing  ## Scope  - Input: Markdown files with optional Mermaid diagrams - Output: Branded documents in requested formats - Templates: Custom Office Templates for branding - Integration: PowerShell-based conversion with Pandoc  ## Key Features  1. **Multi-Format Conversion**: DOCX, PDF, HTML outputs 2. **Mermaid Processing**: Automatic diagram-to-image conversion 3. **Template Support**: Client/partner-specific branding 4. **Resource Management**: Image and resource path handling 5. **TOC Generation**: Optional table of contents  ## Inputs  - Markdown file path - Output formats (array) - Partner/Client for template selection - Resource path for images - Optional: TOC depth, title  ## Outputs  - Generated documents in specified formats - Processed images/diagrams - Success/failure status  ## Process Flow  1. Validate input Markdown file 2. Select appropriate template (client > partner priority) 3. Process Mermaid diagrams if present 4. Convert using Pandoc with template 5. Handle resource paths and images 6. Generate output files  ## Template Management  - **Defaults**: Templates stored in `$env:USERPROFILE\Documents\Custom Office Templates` (user profile) - **Priority**: Client templates > Partner templates > Defaults - **Override**: Use `-TemplateDir` parameter for custom locations (e.g., shared dreamcatcher templates) - **Augmentation**: Clients can add subfolders (e.g., `ecolab/template.docx`) to override defaults  ## Usage  Invoke during Implement phase to create branded client documents. Example:  ```powershell .\Convert-Document.ps1 -InputFile 'report.md' -Formats 'docx','pdf' -Client 'ecolab' -IncludeToc ```  ## Dependencies  - Pandoc installed - PowerShell execution - Custom Office Templates directory - Mermaid CLI (optional for diagram processing)
+# Document Generator Skill
+
+## Overview
+
+The Document Generator is a specialized skill for creating client-focused, branded documents from existing Markdown files. It converts Markdown content into professional formats (DOCX, PDF, HTML) using PowerShell scripts and Pandoc, with automatic output placement in designated directories.
+
+## Purpose
+
+- Generate branded client documents from Markdown sources
+- Convert to multiple formats (DOCX, PDF, HTML) for client delivery
+- Automatically place outputs in appropriate directories
+- Support client-specific branding and templates
+
+## Scope
+
+- Input: Existing Markdown file path
+- Output: Branded documents in requested formats
+- Placement: `~/{project-name}/docs/Analysis/outputs` if exists, otherwise same directory as input
+- Formats: DOCX (primary), PDF, HTML
+- Branding: Client-specific templates and watermarks
+
+## Key Features
+
+1. **Client-Focused Conversion**: Tailored for professional client deliverables
+2. **Automatic Output Placement**: Smart directory selection based on project structure
+3. **Multi-Format Generation**: DOCX, PDF, HTML outputs
+4. **Template Integration**: Client/partner branding support
+5. **Mermaid Processing**: Automatic diagram conversion
+
+## Inputs
+
+- Markdown file path (required)
+- Client name for branding (optional, defaults to generic)
+- Output formats (optional, defaults to DOCX)
+- Custom title (optional)
+
+## Outputs
+
+- Generated documents in specified formats
+- Placed in `~/{project-name}/docs/Analysis/outputs` or input directory
+- Confirmation of file locations
+
+## Process Flow
+
+1. Validate input Markdown file exists
+2. Determine output directory (check `~/{project-name}/docs/Analysis/outputs`, fallback to input dir)
+3. Select client template if specified
+4. Call `scripts/Convert-Document.ps1` with parameters
+5. Generate documents with branding
+6. Return success with file paths
+
+## Usage
+
+Invoke when user requests client document creation from Markdown. Examples:
+
+- "Generate a client document from MacroFlow-Analysis.md for xAI"
+- "Create branded DOCX from report.md"
+
+The skill will automatically:
+
+- Use client-specific branding
+- Place output in correct directory
+- Generate multiple formats if requested
+
+## Script Integration
+
+Calls `scripts/Convert-Document.ps1` with:
+
+- `-InputFile`: Path to Markdown
+- `-Client`: Client name for branding
+- `-Formats`: Array of output formats
+- `-Title`: Custom document title
+- `-OutputDir`: Determined output directory
+
+## Dependencies
+
+- Pandoc installed
+- `scripts/Convert-Document.ps1` script
+- Client templates in appropriate directories
+- PowerShell execution environment

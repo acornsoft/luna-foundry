@@ -22,7 +22,7 @@ structured integrations.
 new Sherpa Agents, domain-specific prompts, or experimental patterns in the
 Foundry. Now includes setup for VS Code Copilot agents and skills.
 - **References**: instructions.md, README.md, Conversation-001.md, VS Code Copilot
-customization docs.
+customization docs, [Agent Skills Specification](https://agentskills.io/specification).
 
 ### 2. Operational Concept
 
@@ -58,6 +58,7 @@ The following section provides a visual representation of the `src/foundry` dire
 ```mermaid
 graph TD
     A[foundry] --> B[agents/]
+    A --> C[chatmodes/]
     A --> C[instructions/]
     A --> D[prompts/]
     A --> E[skills/]
@@ -69,18 +70,106 @@ graph TD
 
 ### Folder Explanations and Intent
 
-- **agents/**: Contains interactive AI assistants (Sherpa Agents) for VS Code Copilot integration. Intent: Enable conversational, role-based guidance during MacroFlow phases, with subfolders for core ritual agents and specialized tools.
-  - **Luna.agent.md**: Main orchestrator for MacroFlow, invoking sub-agents.
-  - **core/**: Houses the six MacroFlow phase agents (Constitution to Implement), providing structured ritual support.
-  - **tools/**: Specialized agents for domain-specific tasks (e.g., AI engineering, Azure architecture), enhancing analysis and implementation.
+- **agents/**: Contains interactive AI assistants (Sherpa Agents) designed for seamless integration with VS Code Copilot and other compatible tools. The intent is to enable conversational, role-based guidance throughout the MacroFlow phases, facilitating dynamic user interactions and automated orchestration. This folder emphasizes modularity and reusability, allowing agents to be invoked explicitly or implicitly during development workflows.
+  - **Luna.agent.md**: The primary orchestrator agent for MacroFlow, responsible for initiating and coordinating the flow network. It invokes sub-agents based on user queries, ensuring alignment with Grok xAI principles and providing high-level oversight.
+  - **core/**: Houses the foundational MacroFlow phase agents (Constitution, Clarify, Specify, Plan, Tasks, Implement), each providing structured support for their respective ritual steps. These agents enforce consistency, handle phase-specific logic, and integrate with the flow network for parallel execution where applicable.
+  - **tools/**: Specialized agents for domain-specific tasks, such as AI engineering, Azure architecture, or client-specific analyses. These enhance the MacroFlow by offering targeted assistance, reducing manual effort, and adapting to complex scenarios like multi-agent systems or real-time integrations.
 
-- **instructions/**: Stores detailed guidance documents for MacroFlow phases and core systems. Intent: Provide human-readable instructions for developers, ensuring consistent application of Luna's principles and processes.
+- **chatmodes/**: Stores custom chat mode configurations for Grok interactions, defining personality traits, response styles, and behavioral constraints. The intent is to tailor AI responses to specific contexts (e.g., technical vs. creative), ensuring that MacroFlow phases operate within defined modes like "Think" for reasoning or "Big Brain" for complex computations. This folder supports Grok's unique features, such as voice modes or streaming, for immersive and adaptive user experiences.
 
-- **prompts/**: Holds reusable JSON prompt files for Grok API interactions. Intent: Standardize AI queries for each MacroFlow phase, enabling reliable, structured outputs without manual crafting.
+- **instructions/**: Stores detailed, human-readable guidance documents for each MacroFlow phase, core systems, and operational procedures. The intent is to provide comprehensive instructions for developers, ensuring consistent application of Luna's principles, Grok-native constraints, and best practices. These documents serve as reference materials, training aids, and integration points for agents and skills, promoting knowledge sharing and reducing onboarding time.
+  - Examples include phase-specific guides (e.g., "Clarify-Phase-Instructions.md" outlining questioning strategies) and system overviews (e.g., "Grok-Integration-Guidelines.md" for API usage).
 
-- **skills/**: Bundles specialized capabilities as self-contained modules. Intent: Offer reusable tools for complex tasks like code analysis or document generation, integrating with agents for enhanced functionality.
-  - **document-generator/**: Skill for creating branded client deliverables (e.g., DOCX, PDF) with Mermaid support.
-  - **forensic-coder/**: Skill for comprehensive codebase analysis (security, performance, design).
+- **prompts/**: Holds reusable JSON prompt files structured for Grok API interactions, encapsulating queries, parameters, and expected outputs for each MacroFlow phase. The intent is to standardize AI queries, eliminate manual prompt crafting, and ensure reliable, structured responses aligned with Grok's modes (e.g., temperature settings, reasoning types). This folder enables portability and versioning of prompts, supporting automated phase execution and integration with the flow network.
+  - Files like "constitution-prompt.json" define guardrail enforcement, while "generate-prompt.json" handles code generation with uncensored options.
+
+- **skills/**: Bundles specialized capabilities as self-contained modules, following the [Agent Skills Specification](https://agentskills.io/specification) for portability across tools like GitHub Copilot and Claude. The intent is to offer reusable, task-oriented tools for complex operations, integrating seamlessly with agents for enhanced functionality. Skills evolve organically through git, with "Learned Patterns" sections capturing feedback and improvements, ensuring adaptability and modularity in MacroFlow implementations.
+  - **document-generator/**: A skill for creating branded client deliverables (e.g., DOCX, PDF, PPTX, HTML) using Pandoc, Mermaid for diagrams, and custom templates. It processes system analysis outputs, applies branding, and generates professional reports, supporting end-to-end workflows from analysis to delivery.
+  - **forensic-coder/**: A skill for comprehensive codebase analysis, including security audits, performance profiling, and design pattern identification. It reads repositories, understands logic glue (e.g., dependencies, imports), and produces detailed reports with Mermaid visualizations, aiding in Clarify and Plan phases.
+  - Additional skills like **macroflow-network/** (orchestrator for the flow graph), **grok-x-insights/** (real-time X ecosystem pulls), and **generate-client-report/** (final branded output generation) extend capabilities for Grok-unique integrations and client-focused outcomes.
+
+## Visual Diagrams and Architecture
+
+To provide rich context for the directory structure, software design, and overall approach in Luna Foundry and MacroFlow, the following diagrams are included. These use Mermaid syntax for UML Activity Diagrams and C4 Model diagrams, offering a visual representation of workflows, system components, and architectural elements.
+
+### UML Activity Diagram: MacroFlow Workflow
+
+This UML Activity Diagram illustrates the dynamic flow of MacroFlow as a network, starting from user query to final output, with parallel paths, branches, and loops for verification and refinement.
+
+```mermaid
+graph TD
+    Start[User Query] -->|Parallel| Constitution
+    Start -->|Parallel| Clarify
+    Constitution --> Plan
+    Clarify --> Plan
+    Plan --> Generate
+    Generate --> Verify
+    Verify -->|Fail| Refine
+    Refine --> Generate
+    Verify -->|Pass| End[Final Output]
+```
+
+### C4 Context Diagram: High-Level System Overview
+
+This C4 Context Diagram shows Luna Foundry at the highest level, interacting with external systems like users, VS Code, GitHub, and Grok API, emphasizing the flow network as the core component.
+
+```mermaid
+graph LR
+    User[User/Developer] -->|Query| MacroFlowNetwork[MacroFlow Network<br>(Luna Foundry)]
+    MacroFlowNetwork -->|Skills/Agents| VSC[VS Code / Copilot]
+    MacroFlowNetwork -->|Version Control| GitHub[GitHub Repo<br>(.github/skills/)]
+    MacroFlowNetwork -->|AI Interactions| GrokAPI[Grok API<br>(xAI)]
+    MacroFlowNetwork -->|Deliverables| Client[Client Deliverables<br>(PDF, DOCX, etc.)]
+```
+
+### C4 Container Diagram: Components Inside MacroFlow
+
+This C4 Container Diagram details the internal containers of MacroFlow, including the Orchestrator, nodes (steps), and skills, showing how data flows between them.
+
+```mermaid
+graph LR
+    Orchestrator[Container: Orchestrator Agent\n(MacroFlow Engine)] -->|Routes Flow| Nodes[Containers: Step Nodes\n(Constitution, Clarify, Plan, etc.)]
+    Nodes -->|Invokes| Skills[Containers: .github/skills/\nAgents (e.g., grok-x-insights)]
+    Orchestrator -->|Optimizes| Algo[Container: Flow Algorithms\n(NetworkX for max-flow)]
+    Skills -->|Outputs| Deliverables[Container: Client Reports\n(via Pandoc)]
+```
+
+### C4 Component Diagram: Detailed Node Example (Plan)
+
+This C4 Component Diagram zooms into the Plan node, showing its internal components for merging inputs, decomposing tasks, and outputting a task graph.
+
+```mermaid
+graph TD
+    PlanComponent[Component: Plan Node] -->|Input| Merger[Merger: Combine Guardrails + Spec]
+    Merger --> Decomposer[Decomposer: Break into Subtasks]
+    Decomposer --> Output[Output: Task Graph JSON]
+```
+
+### Enhanced Directory Structure Diagram
+
+Building on the earlier directory structure, this enhanced Mermaid diagram includes additional subfolders and connections to illustrate the software design and modularity.
+
+```mermaid
+graph TD
+    A[foundry] --> B[agents/]
+    A --> C[instructions/]
+    A --> D[prompts/]
+    A --> E[skills/]
+    B --> F[core/]
+    B --> G[tools/]
+    F --> H[Luna.agent.md]
+    F --> I[constitution.agent.md]
+    F --> J[clarify.agent.md]
+    E --> K[macroflow-network/]
+    E --> L[grok-x-insights/]
+    E --> M[generate-client-report/]
+    K --> N[SKILL.md]
+    K --> O[graph.json]
+    M --> P[templates/]
+    M --> Q[examples/]
+```
+
+These diagrams collectively provide a comprehensive visual context: the activity diagram shows the process flow, C4 diagrams depict the system architecture at various levels, and the enhanced directory diagram clarifies the organizational structure, ensuring developers can grasp the design and approach intuitively.
 
 ### 4. Constraints
 
@@ -144,6 +233,8 @@ in reverse chronological order (newest first).
 
 | Date | Number | Title | Status | File |
 | ------ | -------- | ------- | -------- | ------ |
+| 2026-01-06 | 013 | Integrate GitHub Repository Links in Azure DevOps Work Items | Accepted | adr-013.md |
+| 2026-01-06 | 012 | Use Azure CLI for Work Item Linkage to GitHub | Accepted | adr-012.md |
 | 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | adr-011.md |
 | 2026-01-06 | 010 | Implement Baseline Azure Function for Cross-App Sync | Accepted | adr-010.md |
 | 2026-01-06 | 009 | Integrate MacroFlow into GitHub Copilot via Repo Instructions | Accepted | adr-009.md |
