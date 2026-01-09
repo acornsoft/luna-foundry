@@ -3,7 +3,7 @@ param(
     [string]$RepoRoot = "K:\com.acornsoft365\luna-foundry"
 )
 
-$LocalGitHub = "$env:USERPROFILE\.github"
+$LocalGitHub = "$RepoRoot\.github"
 
 $FoldersToCopy = @("agents", "chatmodes", "instructions", "prompts", "skills")
 
