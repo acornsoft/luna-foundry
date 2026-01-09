@@ -115,11 +115,11 @@ This C4 Context Diagram shows Luna Foundry at the highest level, interacting wit
 
 ```mermaid
 graph LR
-    User[User/Developer] -->|Query| MacroFlowNetwork[MacroFlow Network<br>(Luna Foundry)]
+    User[User/Developer] -->|Query| MacroFlowNetwork[MacroFlow Network (Luna Foundry)]
     MacroFlowNetwork -->|Skills/Agents| VSC[VS Code / Copilot]
     MacroFlowNetwork -->|Version Control| GitHub[GitHub Repo<br>(.github/skills/)]
-    MacroFlowNetwork -->|AI Interactions| GrokAPI[Grok API<br>(xAI)]
-    MacroFlowNetwork -->|Deliverables| Client[Client Deliverables<br>(PDF, DOCX, etc.)]
+    MacroFlowNetwork -->|AI Interactions| GrokAPI[Grok API (AI)]
+    MacroFlowNetwork -->|Deliverables| Client[Client Deliverables PDF, DOCX, etc.)]
 ```
 
 ### C4 Container Diagram: Components Inside MacroFlow
@@ -260,25 +260,32 @@ in reverse chronological order (newest first).
 
 Work items are tracked in Azure DevOps for Luna Foundry development. The table below summarizes key work items in reverse chronological order (newest first).
 
-| ID | Type | Title | Status |
-| ---- | ---- | ------- | ------ |
-| [973](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/973) | Epic | Luna Foundry (Release 1) | Active |
-| [1006](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1006) | User Story | Develop Implement Sub-Agent | New |
-| [1005](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1005) | User Story | Develop Tasks Sub-Agent | New |
-| [1004](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1004) | User Story | Develop Plan Sub-Agent | New |
-| [1003](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1003) | User Story | Develop Specify Sub-Agent | New |
-| [1002](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1002) | User Story | Develop Clarify Sub-Agent | New |
-| [1001](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1001) | User Story | Develop Constitution Sub-Agent | New |
-| [1000](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1000) | Feature | Develop MacroFlow Sub-Agents | New |
-| [999](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/999) | Task | Version & Commit | New |
-| [998](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/998) | Task | Remove/Archive Redundants | New |
-| [997](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/997) | Task | Test Integration | New |
-| [996](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/996) | Task | Apply Neutrality | New |
-| [995](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/995) | Task | Migrate Content | New |
-| [994](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/994) | Task | Update Core File | New |
-| [993](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/993) | Task | Audit Redundancies | New |
-| [992](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/992) | User Story | Clean Up Redundancies in .github Folder | New |
-| [991](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/991) | Feature | Cleanup Luna Foundry Redundancies | New |
+| ID | Type | Title | Status | Area | Iteration | Priority |
+| ---- | ---- | ------- | ------ | ---- | -------- | -------- |
+| [973](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/973) | Epic | Luna Foundry (Release 1) | Active | (ASFT) Luna Foundry | 2026.1 | 1 |
+| [1006](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1006) | User Story | Develop Implement Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1005](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1005) | User Story | Develop Tasks Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1004](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1004) | User Story | Develop Plan Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1003](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1003) | User Story | Develop Specify Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1002](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1002) | User Story | Develop Clarify Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1001](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1001) | User Story | Develop Constitution Sub-Agent | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [1000](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1000) | Feature | Develop MacroFlow Sub-Agents | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [999](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/999) | Task | Version & Commit | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [998](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/998) | Task | Remove/Archive Redundants | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [997](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/997) | Task | Test Integration | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [996](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/996) | Task | Apply Neutrality | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [995](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/995) | Task | Migrate Content | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [994](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/994) | Task | Update Core File | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [993](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/993) | Task | Audit Redundancies | New | (ASFT) Luna Foundry | 2026.1 | 3 |
+| [992](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/992) | User Story | Clean Up Redundancies in .github Folder | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+| [991](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/991) | Feature | Cleanup Luna Foundry Redundancies | New | (ASFT) Luna Foundry | 2026.1 | 2 |
+
+## Discussion
+
+- All work items updated with Area: (ASFT) Luna Foundry, Iteration: 2026.1, Priority: 2 (1 for Epic), Tags: Luna; MacroFlow.
+- Descriptions and Acceptance Criteria added for sub-agent development.
+- Estimates: Original 8 hours, Remaining 8 hours, Completed 0 hours for New items; Adjusted for Active items.
+- Comments added to each work item: "Updated area, iteration, and fields as per Luna Foundry requirements."
 
 ### ADR [Number]: [Title]
 
@@ -292,6 +299,7 @@ Work items are tracked in Azure DevOps for Luna Foundry development. The table b
 
 ### Example ADR 001: Adopt MacroFlow Phases
 
+```markdown
 **Date**: 2026-01-01  
 **Status**: Accepted  
 **Context**: The Luna Foundry requires a structured process for developing prompts
@@ -303,6 +311,7 @@ Specify, Plan, Tasks, Implement.
 
 - Positive: Standardized process reduces errors and improves quality.
 - Negative: May add overhead for simple tasks; requires training.
+```
 
 ## Document Metadata
 

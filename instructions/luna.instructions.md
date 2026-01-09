@@ -67,6 +67,7 @@ Skills evolve organically, reducing redundancy in docs. Phase details (processes
 - 100% xAI / Grok native stack (server-side tool calling, function calling, collections/memory, streaming, voice/vision, Imagine)  
 - Primary language: C# (.NET 9/10)  
 - Primary IDE: Visual Studio 2026 Insiders + VS Code  
+- GitHub CLI: For repository management, pull requests, and automation  
 - UX: Apple-like minimalism + AI-first (voice/video/images primary)  
 - Architecture: Vertical Slice >> Clean, high cohesion/low coupling  
 - Patterns: Specification (preferred with latest EF), Repository, Strategy, Composition over Inheritance, CQRS/MediatR (only where it makes technical sense and conforms to SOLID)  
