@@ -11,7 +11,10 @@ foreach ($folder in $FoldersToCopy) {
     $source = Join-Path $LocalGitHub $folder
     $dest = Join-Path $RepoRoot $folder
     if (Test-Path $source) {
-        Copy-Item -Path $source -Destination $dest -Recurse -Force
+        if (!(Test-Path $dest)) {
+            New-Item -ItemType Directory -Path $dest
+        }
+        Copy-Item -Path "$source\*" -Destination $dest -Recurse -Force
         Write-Host "Copied $folder to $dest"
     }
 }

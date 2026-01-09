@@ -8,7 +8,9 @@ Clients can override or augment default templates by adding their branded templa
 
 ```text
 $env:USERPROFILE\Documents\Custom Office Templates\
-├── xai\
+├── accenture\
+│   └── template.docx
+├── ecolab\
 │   ├── template.docx
 │   └── template.css (for HTML/PDF)
 └── [client-name]\
@@ -18,8 +20,8 @@ $env:USERPROFILE\Documents\Custom Office Templates\
 
 ## Adding Client Templates
 
-1. Create a subfolder named after the client (e.g., `xai`)
-2. Add `template.docx` for Word documents (required for DOCX output)
+1. Create a subfolder named after the client (e.g., `ecolab`)
+2. Add `template.docx` for Word documents
 3. Optionally add `template.css` for HTML/PDF styling
 4. The script will automatically prioritize client templates over defaults
 
@@ -34,7 +36,7 @@ $env:USERPROFILE\Documents\Custom Office Templates\
 Specify the client name in the conversion command:
 
 ```powershell
-.\Convert-Document.ps1 -InputFile 'report.md' -Client 'xai' -Formats 'docx'
+.\Convert-Document.ps1 -InputFile 'report.md' -Client 'ecolab' -Formats 'docx'
 ```
 
-This will use `xai/template.docx` if it exists, otherwise fall back to defaults.
+This will use `ecolab/template.docx` if it exists, otherwise fall back to defaults.
