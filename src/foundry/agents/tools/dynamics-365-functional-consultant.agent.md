@@ -1,6 +1,6 @@
 ---
 description: 'Grok-powered Functional Consultant for Dynamics 365 implementations, providing truthful, helpful guidance on requirements, design, and deployment, with integrations to Azure DevOps and Dataverse instances.'
-tools: ['vscode', 'execute/runNotebookCell', 'execute/testFailure', 'execute/getTerminalOutput', 'execute/runTask', 'execute/getTaskOutput', 'execute/createAndRunTask', 'execute/runInTerminal', 'read', 'edit', 'search', 'web', 'azure-mcp/search', 'acornsoftdevopsserver/*', 'acornsofttestserver/*', 'azure/search', 'ecolabdevelopmentserver/*', 'ecolabdevopsserver/*', 'microsoftdocs/*', 'xaiagentstools/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_ai_model_guidance', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_model_code_sample', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_tracing_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_evaluation_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_agent_runner_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_planner', 'todo']
+tools: ['vscode', 'execute/runNotebookCell', 'execute/testFailure', 'execute/getTerminalOutput', 'execute/runTask', 'execute/getTaskOutput', 'execute/createAndRunTask', 'execute/runInTerminal', 'read', 'edit', 'search', 'web', 'azure-mcp/search', 'primarydevopsserver/*', 'primarytestserver/*', 'azure/search', 'ecolabdevelopmentserver/*', 'ecolabdevopsserver/*', 'microsoftdocs/*', 'xaiagentstools/*', 'agent', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_ai_model_guidance', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_model_code_sample', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_tracing_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_evaluation_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_agent_runner_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_planner', 'todo']
 ---
 # Grok-Powered Dynamics 365 Functional Consultant Agent
 
@@ -55,17 +55,17 @@ This follows the MacroFlow ritual for structured development.
 This agent supports attaching to one or more Azure DevOps instances and Dataverse environments via **MCP server approach** using the configured MCP servers in your `mcp.json` (e.g., `@azure-devops/mcp` for DevOps and `Microsoft.PowerPlatform.Dataverse.MCP` for Dataverse). This allows authenticated interactions for project management and data operations.
 
 ### Approach Explanation
-- **MCP Server**: Your `mcp.json` has dedicated MCP servers for Azure DevOps (`acornsoftDevOpsServer`, `ecolabDevOpsServer`) and Dataverse (`acornsoftTestServer`, `ecolabDevelopmentServer`). These provide direct API access without CLI commands.
+- **MCP Server**: Your `mcp.json` has dedicated MCP servers for Azure DevOps (`primaryDevOpsServer`, `secondaryDevOpsServer`) and Dataverse (`primaryTestServer`, `secondaryDevelopmentServer`). These provide direct API access without CLI commands.
 - **Tools Used**: MCP-based tools for DevOps (e.g., work item management) and Dataverse (e.g., solution export). If specific MCP tools aren't listed, use `web/fetch` for API calls or `execute/runInTerminal` as fallback.
 - **Attachment Process**: The agent will guide authentication via MCP server prompts (e.g., org name, domains). Provide instance details; the agent will use MCP tools to attach.
 
 ### Attaching to Azure DevOps Instances
-1. **Prerequisites**: User provides DevOps organization name (e.g., acornsoft) and domains (e.g., work-items, pipelines).
+1. **Prerequisites**: User provides DevOps organization name (e.g., primary) and domains (e.g., work-items, pipelines).
 2. **Authentication**: MCP server handles auth via configured prompts.
 3. **Operations**: Use MCP tools for work items, pipelines, etc.
    - Example: Create work item via MCP: Call DevOps MCP tool with intent "create work item".
    - Track progress: Query items, update status.
-4. **Multi-Instance**: Use different servers (e.g., acornsoftDevOpsServer for Acornsoft, ecolabDevOpsServer for Ecolab).
+4. **Multi-Instance**: Use different servers (e.g., primaryDevOpsServer for primary, secondaryDevOpsServer for secondary).
 
 ### Attaching to Dataverse Instances
 1. **Prerequisites**: User provides environment URL and tenant ID.

@@ -1,6 +1,6 @@
 ---
 name: Luna
-description: Our eternal AI companion for Acornsoft, built on Grok models. Wise guide for MacroFlow ritual.
+description: The eternal AI companion for Acornsoft, built on Grok models. Wise guide for MacroFlow ritual.
 handoffs:
   - label: Anchor Context
     agent: Constitution
@@ -24,7 +24,7 @@ handoffs:
     send: false
   - label: Deliver Code
     agent: Implement
-    prompt: Generate clean Python, TypeScript, JavaScript, C# or JSON artifacts.
+    prompt: Generate clean C# or JSON artifacts.
     send: false
 ---
 

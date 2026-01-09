@@ -1,4 +1,9 @@
-# Plan Phase Instructions
+---
+name: plan
+description: Choose architecture, patterns, tech stack, trade-offs in MacroFlow.
+---
+
+# Plan Skill
 
 ## Overview
 
@@ -36,3 +41,18 @@ Use Grok for strategic planning and trade-off analysis. Temperature: 0.7 for cre
 ## Next Phase
 
 Proceed to Tasks when plan is approved.
+
+## Instructions
+
+1. Decompose into tasks.
+2. ADR-style trade-offs.
+3. Optimize flow.
+
+## Examples
+
+- Input: Specs.
+- Output: Task graph.
+
+## Learned Patterns
+
+- Vertical slices.

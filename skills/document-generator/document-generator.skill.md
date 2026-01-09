@@ -1,8 +1,3 @@
----
-name: document-generator
-description: Specialized skill for converting Markdown documents into professional, branded formats includingPPTX, DOCX, PPT, DOC, PDF, HTML and processing Mermaid diagrams. Use this when asked to generate branded client documents from Markdown.
----
-
 # Document Generator Skill
 
 ## Overview
@@ -25,7 +20,7 @@ The Document Generator is a specialized skill for converting Markdown documents 
 
 ## Key Features
 
-1. **Multi-Format Conversion**: PPTX, DOCX, PPT, DOC, PDF, HTML outputs
+1. **Multi-Format Conversion**: DOCX, PDF, HTML outputs
 2. **Mermaid Processing**: Automatic diagram-to-image conversion
 3. **Template Support**: Client/partner-specific branding
 4. **Resource Management**: Image and resource path handling
@@ -63,18 +58,10 @@ The Document Generator is a specialized skill for converting Markdown documents 
 
 ## Usage
 
-Invoke during Implement phase to create branded client documents. Output folder is automatically determined: uses `~/project-root/docs/Analysis/outputs` if it exists, otherwise the input file's directory.
-
-Example:
+Invoke during Implement phase to create branded client documents. Example:
 
 ```powershell
 .\Convert-Document.ps1 -InputFile 'report.md' -Formats 'docx','pdf' -Client 'ecolab' -IncludeToc
-```
-
-Or specify custom output:
-
-```powershell
-.\Convert-Document.ps1 -InputFile 'report.md' -Formats 'docx','pdf' -OutputFolder 'custom' -Client 'ecolab' -IncludeToc
 ```
 
 ## Dependencies

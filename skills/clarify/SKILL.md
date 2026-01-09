@@ -1,4 +1,9 @@
-# Clarify Phase Instructions
+---
+name: clarify
+description: Refine user intent through questions and context gathering in MacroFlow.
+---
+
+# Clarify Skill
 
 ## Overview
 
@@ -53,3 +58,16 @@ Use Grok for probing questions and assumption validation. Temperature: 0.7 for e
 ## Next Phase
 
 Proceed to Specify when requirements are clear, using MacroFlow-Analysis.md as a real-world example for process improvement.
+
+## Instructions
+1. Ask targeted clarifying questions.
+2. Gather context from workspace or web.
+3. Use Grok X-insights for real-time data.
+4. Resolve assumptions.
+
+## Examples
+- Input: Vague query.
+- Output: Refined spec.
+
+## Learned Patterns
+- Parallel with Constitution.
