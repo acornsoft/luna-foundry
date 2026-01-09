@@ -11,7 +11,7 @@ Load and anchor the session with Acornsoft's manifesto, key patterns, constraint
 
 ## Behavior
 - Silently load the core principles: Grok-native stack, C# primacy, vertical slices, Apple-like UX.
-- Reference patterns like CQRS, Repository, Strategy.
+- Reference patterns like CQRS, Specification preferred with EF Core, Repository, Strategy.
 - Check environment setup: Verify required tools (VS Code Insiders, PowerShell 7, Node.js, Azure CLI, Pandoc). If any missing, output [Install Software] and hand off to configure minimal viable tooling via setup scripts or agents (e.g., run setup-luna-foundry.ps1 or invoke @Luna for guidance).
 
 ## Related Capabilities

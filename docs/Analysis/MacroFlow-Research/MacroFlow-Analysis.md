@@ -2,7 +2,7 @@
 
 This document serves as a comprehensive guide to MacroFlow, a structured methodology for developing AI agents and prompts within the Luna Foundry ecosystem. Its intent is to provide a clear framework for ensuring consistency, alignment with Grok xAI principles, and high-quality outputs in Acornsoft projects. The document contains a detailed Concept of Operations (ConOps) outlining MacroFlow's purpose, operational phases, constraints, and integration points, alongside integrated Architecture Decision Records (ADRs) that capture key design decisions following the format from [adr.github.io](https://adr.github.io). For technical implementation details on using Markdown and JSON in the Luna Foundry, see [Luna-Foundry-Technical-Implementation.md](Luna-Foundry-Technical-Implementation.md).
 
-The primary audience includes Acornsoft developers, AI engineers, project managers, and stakeholders involved in client-based analysis and solution development. To leverage this document for client-based analysis, users should first review the ConOps to understand MacroFlow's operational context, then apply the structured phases to break down client requirements into actionable development tasks. For solution development, focus on the key features such as the six-phase process (Constitution, Clarify, Specify, Plan, Tasks, Implement), Grok xAI integration for reliable AI outputs, and support for production-grade code generation in C# and Python. Leverage the `src/foundry` folder for organizing custom agents, instructions, prompts, and skills aligned with VS Code Copilot standards, enabling rapid prototyping and deployment of client-tailored AI solutions. For example, use skills like the Forensic Coder for comprehensive codebase analysis during Clarify or Specify phases, or the Document Generator for creating branded client deliverables in the Implement phase. Agents provide interactive assistance, while skills bundle specialized tools for task-oriented workflows.
+The primary audience includes Acornsoft developers, AI engineers, project managers, and stakeholders involved in client-based analysis and solution development. To use this document for client-based analysis, first review the ConOps to understand MacroFlow's operational context, then apply the structured phases to break down client requirements into actionable development tasks. For solution development, focus on key features such as the six-phase process (Constitution, Clarify, Specify, Plan, Tasks, Implement), Grok xAI integration for reliable AI outputs, and support for production-grade code generation in C# and Python, and use the `src/foundry` folder to organize custom agents, instructions, prompts, and skills aligned with VS Code Copilot standards. For example, you can use the Forensic Coder skill for comprehensive codebase analysis during the Clarify or Specify phases, and the Document Generator skill for creating branded client deliverables in the Implement phase, while agents provide interactive assistance and skills bundle specialized tools for task-oriented workflows.
 
 ## Concept of Operations
 
@@ -237,6 +237,8 @@ in reverse chronological order (newest first).
 
 | Date | Number | Title | Status | File |
 | ------ | -------- | ------- | -------- | ------ |
+| 2026-01-09 | 018 | Ensure Prerequisites and Azure DevOps Access in Constitution Phase | Accepted | adr-018.md |
+| 2026-01-08 | 017 | Clean Up Redundancies and Prioritize Skills in Luna Foundry | Accepted | adr-017.md |
 | 2026-01-07 | 016 | Define Key Architectural Patterns for Luna Foundry API Development | Proposed | adr-016.md |
 | 2026-01-07 | 015 | Implement Azure DevOps Feature for Luna Foundry Pre-Requisites Tracking | Proposed | adr-015.md |
 | 2026-01-07 | 014 | Add Transition Labels to Luna Agent for MacroFlow Guidance | Accepted | adr-014.md |
@@ -253,6 +255,30 @@ in reverse chronological order (newest first).
 | 2026-01-03 | 003 | Adopt Hybrid Markdown/JSON for Agents | Accepted | adr-003.md |
 | 2026-01-03 | 002 | Separate Development and Deployment for Agents | Accepted | adr-002.md |
 | 2026-01-01 | 001 | Adopt MacroFlow Phases | Accepted | adr-001.md |
+
+## Work Items
+
+Work items are tracked in Azure DevOps for Luna Foundry development. The table below summarizes key work items in reverse chronological order (newest first).
+
+| ID | Type | Title | Status |
+| ---- | ---- | ------- | ------ |
+| [973](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/973) | Epic | Luna Foundry (Release 1) | Active |
+| [1006](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1006) | User Story | Develop Implement Sub-Agent | New |
+| [1005](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1005) | User Story | Develop Tasks Sub-Agent | New |
+| [1004](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1004) | User Story | Develop Plan Sub-Agent | New |
+| [1003](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1003) | User Story | Develop Specify Sub-Agent | New |
+| [1002](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1002) | User Story | Develop Clarify Sub-Agent | New |
+| [1001](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1001) | User Story | Develop Constitution Sub-Agent | New |
+| [1000](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1000) | Feature | Develop MacroFlow Sub-Agents | New |
+| [999](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/999) | Task | Version & Commit | New |
+| [998](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/998) | Task | Remove/Archive Redundants | New |
+| [997](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/997) | Task | Test Integration | New |
+| [996](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/996) | Task | Apply Neutrality | New |
+| [995](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/995) | Task | Migrate Content | New |
+| [994](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/994) | Task | Update Core File | New |
+| [993](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/993) | Task | Audit Redundancies | New |
+| [992](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/992) | User Story | Clean Up Redundancies in .github Folder | New |
+| [991](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/991) | Feature | Cleanup Luna Foundry Redundancies | New |
 
 ### ADR [Number]: [Title]
 

@@ -2,7 +2,7 @@
 
 **Confidential - For xAI Internal Use Only**
 
-**Prepared by:** Acornsoft Luna Foundry Team  
+**Prepared by:** Luna Foundry Team  
 **Date:** January 7, 2026  
 **Version:** 1.0  
 
