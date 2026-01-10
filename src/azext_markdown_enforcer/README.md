@@ -1,124 +1,83 @@
-# Azure CLI Markdown Enforcer Extension
+# Azure CLI Extension: Markdown Enforcer
 
-A Python Azure CLI extension that enforces Markdown format on Azure DevOps work items by updating the `multilineFieldsFormat` property.
+This Azure CLI extension allows you to set the multiline format to Markdown on Azure DevOps work items, enabling Markdown support for multiline fields where supported.
+
+## Prerequisites
+
+- Python 3.8 or higher
+- Azure CLI installed (`az` command available)
+- Azure CLI logged in to Azure DevOps (`az devops login` or `az login`)
+- Git (for cloning the repository)
 
 ## Installation
 
-### From Source
-
-1. Clone the repository
-2. Navigate to the extension directory:
+1. Clone the Luna Foundry repository:
    ```bash
-   cd src/azext_markdown_enforcer
+   git clone https://github.com/acornsoft/luna-foundry.git
+   cd luna-foundry/src/azext_markdown_enforcer
    ```
+
+2. Build the extension wheel:
+   ```bash
+   python setup.py bdist_wheel
+   ```
+
 3. Install the extension:
    ```bash
-   az extension add --source .
+   az extension add --source dist/multiline_format_setter-0.1.0-py3-none-any.whl
    ```
 
-### From Wheel
-
-```bash
-pip install azext_markdown_enforcer-0.1.0-py3-none-any.whl
-az extension add --name markdown-enforcer
-```
+4. Verify installation:
+   ```bash
+   az boards work-item set-multiline-format --help
+   ```
 
 ## Usage
 
-### Basic Usage
-
-Enforce Markdown format on work items by ID:
-```bash
-az boards work-item markdown-enforce enforce --ids 123 456 789
-```
-
-### Using WIQL Query
-
-Enforce Markdown format on work items matching a WIQL query:
-```bash
-az boards work-item markdown-enforce enforce --wiql "SELECT [System.Id] FROM WorkItems WHERE [System.WorkItemType] = 'Task'"
-```
-
-### Filter by Work Item Types
-
-Enforce Markdown format on specific work item types:
-```bash
-az boards work-item markdown-enforce enforce --work-item-types Task Bug
-```
-
-### Process Child Work Items
-
-Enforce Markdown format on child work items of a parent:
-```bash
-az boards work-item markdown-enforce enforce --parent-id 123
-```
-
-### Specify Fields
-
-By default, only `System.Description` is updated. Specify additional fields:
-```bash
-az boards work-item markdown-enforce enforce --ids 123 --fields System.Description Microsoft.VSTS.TCM.ReproSteps
-```
-
-### Dry Run
-
-Preview changes without making them:
-```bash
-az boards work-item markdown-enforce enforce --ids 123 --dry-run
-```
-
-### Override Organization/Project
-
-Specify different org/project than the default:
-```bash
-az boards work-item markdown-enforce enforce --ids 123 --org myorg --project myproject
-```
-
-## Authentication
-
-The extension uses the same authentication as the Azure CLI. Ensure you are logged in:
+### Set multiline format on child work items of a parent
 
 ```bash
-az login
-az devops configure --defaults organization=https://dev.azure.com/myorg project=myproject
+az boards work-item set-multiline-format --parent <parent-id> --fields System.Description
 ```
+
+### Set multiline format on specific work items
+
+```bash
+az boards work-item set-multiline-format --ids 123 456 --fields System.Description AcceptanceCriteria
+```
+
+### Dry run to see what would be changed
+
+```bash
+az boards work-item set-multiline-format --parent <parent-id> --dry-run
+```
+
+### Options
+
+- `--wiql`: WIQL query to select work items
+- `--ids`: Specific work item IDs
+- `--work-item-types`: Filter by work item types
+- `--parent-id`: Process child work items of this parent
+- `--fields`: Fields to set multiline format on (default: System.Description)
+- `--dry-run`: Show what would be changed without making changes
+- `--org`: Azure DevOps organization URL (if not configured)
+- `--project`: Azure DevOps project name (if not configured)
 
 ## Examples
 
-### Enforce Markdown on all Tasks in a project
-```bash
-az boards work-item markdown-enforce enforce --work-item-types Task
-```
-
-### Update multiple fields with dry run
-```bash
-az boards work-item markdown-enforce enforce --wiql "SELECT [System.Id] FROM WorkItems WHERE [System.State] = 'New'" --fields System.Description Microsoft.VSTS.TCM.ReproSteps --dry-run
-```
-
-## Development
-
-### Setup Development Environment
-
-1. Install dependencies:
-   ```bash
-   pip install -r requirements-dev.txt
-   ```
-
-2. Run tests:
-   ```bash
-   python -m pytest
-   ```
-
-### Building the Extension
+Enforce Markdown on all work items under Epic 973 for Description and AcceptanceCriteria:
 
 ```bash
-python setup.py bdist_wheel
+az boards work-item set-multiline-format --parent 973 --fields System.Description Microsoft.VSTS.Common.AcceptanceCriteria
 ```
 
-## Contributing
+## Troubleshooting
 
-Please read the contributing guidelines and submit pull requests to the main repository.
+If you encounter loading errors, try removing and reinstalling the extension:
 
-## License
+```bash
+az extension remove --name multiline-format-setter
+az extension add --source dist/multiline_format_setter-0.1.0-py3-none-any.whl
+```
 
-MIT License
+Ensure your Azure CLI is up to date: `az upgrade`
