@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: markdown-enforcer
+Version: 0.1.0
+Summary: Azure CLI extension to enforce Markdown format on work items
+Home-page: https://github.com/acornsoft365/luna-foundry
+Author: Acornsoft365
+Author-email: david@acornsoft365.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Requires-Dist: requests>=2.25.0
+Requires-Dist: azure-devops>=6.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A Python Azure CLI extension that enforces Markdown format on Azure DevOps work items by updating multilineFieldsFormat.

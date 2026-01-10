@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: multiline-format-setter
+Version: 0.1.0
+Summary: Azure CLI extension to set multiline format to Markdown on work items
+Home-page: https://github.com/acornsoft365/luna-foundry
+Author: Acornsoft365
+Author-email: david@acornsoft365.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Requires-Dist: requests>=2.25.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A Python Azure CLI extension that sets multilineFieldsFormat to "markdown" on Azure DevOps work items, enabling Markdown support for multiline fields.
