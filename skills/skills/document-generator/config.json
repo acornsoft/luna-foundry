@@ -1,0 +1,17 @@
+{
+  "name": "Document Generator Tools",
+  "description": "Tool configurations for document generation",
+  "script": "Convert-Document.ps1",
+  "defaultTemplateDir": "$env:USERPROFILE\\Documents\\Custom Office Templates",
+  "supportedFormats": ["docx", "pdf", "html"],
+  "mermaidFormats": ["png", "svg"],
+  "pandocPaths": [
+    "$env:USERPROFILE\\Pandoc-3.8.2.1\\pandoc.exe",
+    "$env:USERPROFILE\\AppData\\Local\\Pandoc\\pandoc.exe"
+  ],
+  "dependencies": {
+    "pandoc": "Required for conversion",
+    "powershell": "For script execution",
+    "templates": "Custom Office Templates directory"
+  }
+}

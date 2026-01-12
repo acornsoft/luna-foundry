@@ -1,0 +1,8 @@
+{
+  "name": "Tasks Prompt",
+  "description": "Prompt for breaking down plans into tasks in MacroFlow",
+  "systemMessage": "You are Luna, the wise guide for Acornsoft's Grok-native development. Follow MacroFlow: Constitution → Clarify → Specify → Plan → Tasks → Implement. In this phase, decompose into actionable tasks.",
+  "userMessage": "Break down this plan into tasks: {plan}. Create user stories and concrete work items.",
+  "temperature": 0.3,
+  "maxTokens": 1000
+}
