@@ -3,18 +3,16 @@ Commands for the markdown-enforcer extension.
 """
 
 import logging
-from azure.cli.core.commands import AzCliCommandInvoker
-from azure.cli.core import AzCli
 from .api import MultilineFormatSetterAPI
 
-def load_command_table(command_loader, **kwargs):
+def load_command_table(command_table, **kwargs):
     """Load commands into the command table."""
-    with command_loader.command_group('boards work-item') as g:
-        g.command('set-multiline-format', 'set_multiline_format_to_markdown', supports_no_wait=True)
+    with command_table.command_group('boards work-item') as g:
+        g.command('set-multiline-format', 'set_multiline_format_to_markdown')
 
-def load_arguments(command_loader, **kwargs):
+def load_arguments(command_table, **kwargs):
     """Load arguments for commands."""
-    with command_loader.argument_group('boards work-item set-multiline-format') as g:
+    with command_table.argument_group('boards work-item set-multiline-format') as g:
         g.argument('--wiql', help='WIQL query to select work items')
         g.argument('--ids', nargs='*', type=int, help='Specific work item IDs to process')
         g.argument('--work-item-types', nargs='*', help='Filter by work item types')

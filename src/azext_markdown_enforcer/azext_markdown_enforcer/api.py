@@ -29,7 +29,7 @@ class MultilineFormatSetterAPI:
             # Get default organization and project if not provided
             if not self.org:
                 result = subprocess.run(
-                    ['az', 'devops', 'configure', '--list'],
+                    ['az.cmd', 'devops', 'configure', '--list'],
                     capture_output=True,
                     text=True,
                     check=True
@@ -42,7 +42,7 @@ class MultilineFormatSetterAPI:
 
             if not self.project:
                 result = subprocess.run(
-                    ['az', 'devops', 'configure', '--list'],
+                    ['az.cmd', 'devops', 'configure', '--list'],
                     capture_output=True,
                     text=True,
                     check=True
@@ -54,7 +54,7 @@ class MultilineFormatSetterAPI:
 
             # Get access token
             result = subprocess.run(
-                ['az', 'account', 'get-access-token', '--resource', '499b84ac-1321-427f-aa17-267ca6975798'],
+                ['az.cmd', 'account', 'get-access-token', '--resource', '499b84ac-1321-427f-aa17-267ca6975798'],
                 capture_output=True,
                 text=True,
                 check=True
@@ -69,14 +69,14 @@ class MultilineFormatSetterAPI:
         except subprocess.CalledProcessError as e:
             raise ValueError(f"Failed to load Azure CLI configuration: {e}")
 
-    def _make_request(self, method: str, url: str, data: Optional[Dict] = None) -> Dict:
+    def _make_request(self, method: str, url: str, data: Optional[Dict] = None, params: Optional[Dict] = None) -> Dict:
         """Make an authenticated request to Azure DevOps API."""
         headers = {
             'Authorization': f'Bearer {self._token}',
             'Content-Type': 'application/json-patch+json'
         }
 
-        response = requests.request(method, url, headers=headers, json=data)
+        response = requests.request(method, url, headers=headers, json=data, params=params)
         response.raise_for_status()
         return response.json()
 
@@ -93,16 +93,16 @@ class MultilineFormatSetterAPI:
 
         if wiql:
             # Execute WIQL query
-            url = f"{self._base_url}/wit/wiql"
+            url = f"{self._base_url}/wit/wiql?api-version=7.1"
             data = {"query": wiql}
             result = self._make_request('POST', url, data)
             return [item['id'] for item in result.get('workItems', [])]
 
         if parent_id:
             # Get child work items
-            url = f"{self._base_url}/wit/workitems/{parent_id}"
+            url = f"{self._base_url}/wit/workitems/{parent_id}?api-version=7.1"
             params = {"$expand": "relations"}
-            result = self._make_request('GET', url)
+            result = self._make_request('GET', url, params=params)
             child_ids = []
             for relation in result.get('relations', []):
                 if relation['rel'] == 'System.LinkTypes.Hierarchy-Forward':
@@ -131,7 +131,7 @@ class MultilineFormatSetterAPI:
         for work_item_id in work_item_ids:
             try:
                 # Get current work item
-                url = f"{self._base_url}/wit/workitems/{work_item_id}"
+                url = f"{self._base_url}/wit/workitems/{work_item_id}?api-version=7.1"
                 work_item = self._make_request('GET', url)
 
                 # Check current format
@@ -161,7 +161,7 @@ class MultilineFormatSetterAPI:
                         })
                     else:
                         # Update work item
-                        update_url = f"{self._base_url}/wit/workitems/{work_item_id}"
+                        update_url = f"{self._base_url}/wit/workitems/{work_item_id}?api-version=7.1"
                         self._make_request('PATCH', update_url, updates)
                         logger.info(f"Updated work item {work_item_id} to use Markdown format for fields: {fields}")
                         results.append({
