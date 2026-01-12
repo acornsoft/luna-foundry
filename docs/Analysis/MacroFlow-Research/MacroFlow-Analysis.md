@@ -40,6 +40,35 @@ development in `src/foundry` and deployment to local `~/.github` for testing.
   - Scenario 3: Creating and deploying custom agents in `src/foundry` for VS Code
     Copilot, iterating through phases for alignment.
 
+### Interactive Constitution Instructions
+
+During the initial Constitution run, the following interactive checklist is presented to the user to ensure all prerequisites are met, environment is validated, and project context is loaded. This prescriptive guide enforces setup verification before proceeding to subsequent MacroFlow phases.
+
+1. **Verify Tool Installation**: Confirm that all required tools are installed and accessible.
+   - Do you have VS Code Insiders installed? (Expected: Yes) - If no, install from https://code.visualstudio.com/insiders/.
+   - Is PowerShell 7+ available? (Expected: Yes) - Run `pwsh --version` to check.
+   - Confirm Node.js v22+ is installed. - Run `node --version`.
+   - Verify Azure CLI 2.80+ is present. - Run `az --version`.
+   - Check Pandoc 3.8+ availability. - Run `pandoc --version`.
+   - Ensure GitHub CLI 2.83+ is installed. - Run `gh --version`.
+
+2. **Check Environment Setup**: Validate the development environment and access.
+   - Are you in the Luna Foundry workspace? (Expected: Yes) - Confirm workspace path contains `luna-foundry`.
+   - Confirm access to Azure DevOps project (e.g., acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c). - Run `az devops project list` to verify.
+   - Verify Grok API access (if applicable). - Check for xAI API keys or integrations.
+
+3. **Load Project Context**: Anchor the session with manifesto, patterns, and constraints.
+   - Load Acornsoft manifesto from luna.instructions.md.
+   - Confirm Grok-native stack adherence (C# primacy, no external LLMs beyond xAI).
+   - Set global guardrails for MacroFlow phases (e.g., temperature 0.3 for code, 0.7 for creative).
+
+4. **User Confirmation and Next Steps**: Prompt for readiness and guide progression.
+   - Acknowledge understanding of constraints and patterns. (User must confirm.)
+   - If all checks pass, proceed to Clarify phase.
+   - If issues found, address prerequisites (e.g., install missing tools) before continuing.
+
+This interactive process ensures the session starts with a solid, verified foundation, reducing errors and aligning with Grok xAI principles.
+
 ### 3. System Characteristics
 
 - **User Characteristics**: AI engineers and developers familiar with prompt
@@ -115,11 +144,11 @@ This C4 Context Diagram shows Luna Foundry at the highest level, interacting wit
 
 ```mermaid
 graph LR
-    User[User/Developer] -->|Query| MacroFlowNetwork[MacroFlow Network<br>(Luna Foundry)]
+    User[User/Developer] -->|Query| MacroFlowNetwork[MacroFlow Network - Luna Foundry]
     MacroFlowNetwork -->|Skills/Agents| VSC[VS Code / Copilot]
-    MacroFlowNetwork -->|Version Control| GitHub[GitHub Repo<br>(.github/skills/)]
-    MacroFlowNetwork -->|AI Interactions| GrokAPI[Grok API<br>(xAI)]
-    MacroFlowNetwork -->|Deliverables| Client[Client Deliverables<br>(PDF, DOCX, etc.)]
+    MacroFlowNetwork -->|Version Control| GitHub[GitHub Repo \.github/skills/]
+    MacroFlowNetwork -->|AI Interactions| GrokAPI[Grok API - xAI]
+    MacroFlowNetwork -->|Deliverables| Client[Client Deliverables PDF, DOCX, etc\.\.\.]
 ```
 
 ### C4 Container Diagram: Components Inside MacroFlow
@@ -128,10 +157,10 @@ This C4 Container Diagram details the internal containers of MacroFlow, includin
 
 ```mermaid
 graph LR
-    Orchestrator[Container: Orchestrator Agent\n(MacroFlow Engine)] -->|Routes Flow| Nodes[Containers: Step Nodes\n(Constitution, Clarify, Plan, etc.)]
-    Nodes -->|Invokes| Skills[Containers: .github/skills/\nAgents (e.g., grok-x-insights)]
-    Orchestrator -->|Optimizes| Algo[Container: Flow Algorithms\n(NetworkX for max-flow)]
-    Skills -->|Outputs| Deliverables[Container: Client Reports\n(via Pandoc)]
+    Orchestrator[Container: Orchestrator Agent - MacroFlow Engine] -->|Routes Flow| Nodes[Containers: Step Nodes Constitution, Clarify, Plan, etc\.\.\.]
+    Nodes -->|Invokes| Skills[Containers: .github/skills/Agents - e.g., grok-x-insights]
+    Orchestrator -->|Optimizes| Algo[Container: Flow Algorithms - NetworkX for max-flow]
+    Skills -->|Outputs| Deliverables[Container: Client Reports - via Pandoc]
 ```
 
 ### C4 Component Diagram: Detailed Node Example (Plan)
@@ -178,7 +207,7 @@ Grok-native manifesto. VS Code Insiders is used for Agent Skills preview.
 
 ### API Development Patterns
 
-Based on ADR-016, Luna Foundry enforces specific architectural patterns for API development to ensure scalability, security, and consistency:
+Based on [ADR-016](ADR/adr-016.md), Luna Foundry enforces specific architectural patterns for API development to ensure scalability, security, and consistency:
 
 - **Enterprise/Large Web API**: CQRS (Command Query Responsibility Segregation) with MediatR for command/query separation and event handling.
 - **General Web API**: Minimal APIs with Repository pattern (using EF Core) and Specification pattern for flexible querying and business logic encapsulation.
@@ -217,6 +246,22 @@ This detailed plan outlines a series of tasks centered on Markdown development f
 7. **Task 7: Test and Iterate Markdown in Copilot** - Commit changes, reload VS Code, and test queries (e.g., "@workspace Use MacroFlow to analyze repo") to validate flow network enforcement via skills.
 8. **Task 8: Document Baseline Requirements** - Add a Markdown section summarizing importance, fitting into Acornsoft ecosystem for unified AI workflows, including Grok differentiators.
 
+## Latest Updates: Sub-Agent Refinements Completed
+
+As of January 12, 2026, all MacroFlow sub-agents have been refined through quick-turn iterations, ensuring consistency and Grok integration ([ADR 024](ADR/adr-024.md)). Each agent now includes structured sections for Purpose, Inputs, Process, Outputs, Behaviors, and Grok Integration. ADO work items (1001-1007) have been updated to Resolved with estimates, tags (LunaFoundry; SubAgent; AgentName), and comments. This completes the foundation for MacroFlow orchestration, enabling end-to-end testing and implementation in Azure Functions.
+
+Key refinements:
+
+- **Constitution**: Added dependency checks, role assignments, and Grok temp 0.7.
+- **Clarify**: Added question handling, context gathering, Grok temp 0.3.
+- **Specify**: Added specs definition, validation, Grok temp 0.3.
+- **Plan**: Added architecture selection, ADR trade-offs, Grok temp 0.7.
+- **Tasks**: Added vertical slice decomposition, Grok temp 0.3.
+- **Implement**: Added code generation, standards (#region), Grok temp 0.3.
+- **Luna**: Added orchestration process, eternal personality, Grok integration.
+
+Next steps: Test MacroFlow with sample tasks, implement orchestration code, evolve based on feedback.
+
 ## Insights from Recent Research Conversation (Conversation-003.md)
 
 This section summarizes key insights from Conversation-003.md, a comprehensive discussion on refactoring MacroFlow into a flow network model, accelerating competitive AI coding demos in VS Code, and implementing via agent skills and markdown.
@@ -229,6 +274,36 @@ This section summarizes key insights from Conversation-003.md, a comprehensive d
 
 These insights drive the high-level and detailed plans, emphasizing Markdown-first development, Grok-native compliance, and skills for modularity.
 
+## Latest Findings on Requirements-Writing Skill
+
+This section documents the ongoing refinement of the Requirements-Writing skill based on analysis of real-world Azure DevOps work items from client projects.
+
+- **Completed Analysis**: The full work item hierarchy (Epic > Feature > Requirement > User Story > Task > Test Case) has been analyzed from SampleProjectPlan-001.csv. Derived approaches for each level include targeted client questions, time breakdowns, content guidelines, and structured templates. Sub-skills added to SKILL.md include Epic-Writing (with sections like Business Objectives, Key Objectives, Requirements), Feature-Writing (Business Context, What It Introduces, Business Requirements), Requirement-Writing (Business Objectives, Business Requirements, Technical Considerations, Expected Deliverables), User Story-Writing (As a... I want... so that... with Gherkin Acceptance Criteria), Task-Writing (Steps and Deliverables), and Test Case-Writing (Minimal descriptions with test steps).
+
+- **Skill Application**: The skill has been successfully applied to the Luna Foundry Release 1 Epic (ID 973) in Azure DevOps, refining the description with a comprehensive, Markdown-formatted template including Business Objectives, Key Objectives, Business Requirements, Technical Requirements, Expected Deliverables, and Acceptance Criteria. This validates the Epic-Writing sub-skill and ensures the Epic meets high-quality, testable standards.
+
+- **Next Steps**: Validate the complete skill against MacroFlow principles, potentially update MacroFlow-Analysis.md with findings, or apply the skill to a client project for testing.
+
+- **Impact**: This skill enables 360-degree requirements writing, ensuring comprehensive and testable outputs for client work item creation in Azure DevOps, integrated with MacroFlow for structured development.
+
+## Latest Findings on Markdown Enforcer CLI Extension
+
+This section documents the development and deployment of a Python Azure CLI extension to enforce Markdown format on multiline fields in Azure DevOps work items, addressing issues with HTML content in CLI updates.
+
+- **Problem Statement**: Work items in Luna Foundry are stored in HTML format, causing command-line parsing errors when updating via az CLI due to special characters and long content. Existing az boards commands don't support setting multilineFieldsFormat.
+
+- **Proposed Solution**: Develop `az boards work-item set-multiline-format` extension with flexible scoping (WIQL, IDs, types, parent), targeting Description, AcceptanceCriteria, History fields. Uses REST API PATCH to set multilineFieldsFormat to "markdown", enabling Markdown support for all work items where fields support it, opposed to HTML. Subprocess for queries.
+
+- **Architecture**: Modular azext_markdown_enforcer package (setup.py, commands.py, api.py); leverages az auth; includes dry-run mode.
+
+- **Implementation Progress**: Extension fully implemented with scaffolded structure, CLI argument parsing, query logic via WIQL/subprocess, API update logic using REST PATCH, error handling, dry-run mode, and comprehensive testing. Code built successfully, installed via pip, but encounters runtime loading errors (command_loader issue preventing command recognition). All unit tests pass (11/11). Integrated with requirements-writing skill for automated enforcement during work item creation.
+
+- **Work Items Created**: Epic 1043 "Develop Azure CLI Extension for Markdown Enforcement" with Feature 1044 "Implement CLI Extension Core Logic" and Tasks: 1045 "Scaffold Azure CLI Extension Structure", 1046 "Implement CLI Argument Parsing", 1047 "Implement Query Logic", 1048 "Implement API Update Logic", 1049 "Add Error Handling, Dry-Run, and Testing". All tasks completed with code delivered.
+
+- **ADR**: [ADR-021.md](ADR/adr-021.md) generated, status Accepted for option 2 (set multiline format to Markdown instead of converting content).
+
+- **Next Steps**: Debug and resolve extension loading issue, test integrated workflows with requirements-writing skill, update work items to reflect completion status.
+
 ## Architecture Decision Records
 
 ADRs are external documents following the format from
@@ -237,17 +312,21 @@ in reverse chronological order (newest first).
 
 | Date | Number | Title | Status | File |
 | ------ | -------- | ------- | -------- | ------ |
-| 2026-01-09 | 018 | Ensure Prerequisites and Azure DevOps Access in Constitution Phase | Accepted | adr-018.md |
-| 2026-01-08 | 017 | Clean Up Redundancies and Prioritize Skills in Luna Foundry | Accepted | adr-017.md |
-| 2026-01-07 | 016 | Define Key Architectural Patterns for Luna Foundry API Development | Proposed | adr-016.md |
-| 2026-01-07 | 015 | Implement Azure DevOps Feature for Luna Foundry Pre-Requisites Tracking | Proposed | adr-015.md |
-| 2026-01-07 | 014 | Add Transition Labels to Luna Agent for MacroFlow Guidance | Accepted | adr-014.md |
-| 2026-01-06 | 013 | Integrate GitHub Repository Links in Azure DevOps Work Items | Accepted | adr-013.md |
-| 2026-01-06 | 012 | Use Azure CLI for Work Item Linkage to GitHub | Accepted | adr-012.md |
-| 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | adr-011.md |
-| 2026-01-06 | 010 | Implement Baseline Azure Function for Cross-App Sync | Accepted | adr-010.md |
-| 2026-01-06 | 009 | Integrate MacroFlow into GitHub Copilot via Repo Instructions | Accepted | adr-009.md |
-| 2026-01-03 | 008 | Make Skills Compliant with VS Code Agent Skills Standard | Accepted | adr-008.md |
+| 2026-01-10 | 022 | Defer API Integration Tests for Markdown Enforcer | Accepted | [adr-022.md](ADR/adr-022.md) |
+| 2026-01-10 | 021 | Develop Azure CLI Extension for Setting Multiline Format to Markdown on Work Items | Accepted | [adr-021.md](ADR/adr-021.md) |
+| 2026-01-10 | 020 | Apply Requirements-Writing Skill to Luna Foundry Release 1 Epic | Accepted | [adr-020.md](ADR/adr-020.md) |
+| 2026-01-10 | 019 | Develop Complete Requirements-Writing Skill for Full Work Item Hierarchy | Accepted | [adr-019.md](ADR/adr-019.md) |
+| 2026-01-09 | 018 | Ensure Prerequisites and Azure DevOps Access in Constitution Phase | Accepted | [adr-018.md](ADR/adr-018.md) |
+| 2026-01-08 | 017 | Clean Up Redundancies and Prioritize Skills in Luna Foundry | Accepted | [adr-017.md](ADR/adr-017.md) |
+| 2026-01-07 | 016 | Define Key Architectural Patterns for Luna Foundry API Development | Proposed | [adr-016.md](ADR/adr-016.md) |
+| 2026-01-07 | 015 | Implement Azure DevOps Feature for Luna Foundry Pre-Requisites Tracking | Proposed | [adr-015.md](ADR/adr-015.md) |
+| 2026-01-07 | 014 | Add Transition Labels to Luna Agent for MacroFlow Guidance | Accepted | [adr-014.md](ADR/adr-014.md) |
+| 2026-01-06 | 013 | Integrate GitHub Repository Links in Azure DevOps Work Items | Accepted | [adr-013.md](ADR/adr-013.md) |
+| 2026-01-06 | 012 | Use Azure CLI for Work Item Linkage to GitHub | Accepted | [adr-012.md](ADR/adr-012.md) |
+| 2026-01-06 | 011 | Establish Markdown-Driven Sync Schemas for App Collaboration | Accepted | [adr-011.md](ADR/adr-011.md) |
+| 2026-01-06 | 010 | Implement Baseline Azure Function for Cross-App Sync | Accepted | [adr-010.md](ADR/adr-010.md) |
+| 2026-01-06 | 009 | Integrate MacroFlow into GitHub Copilot via Repo Instructions | Accepted | [adr-009.md](ADR/adr-009.md) |
+| 2026-01-03 | 008 | Make Skills Compliant with VS Code Agent Skills Standard | Accepted | [adr-008.md](ADR/adr-008.md) |
 | 2026-01-03 | 007 | Refine Document Generation Skill via Eat-Your-Own-Dog-Food Approach | Accepted | adr-007.md |
 | 2026-01-03 | 006 | Document Foundry Directory Structure with Mermaid Diagram | Accepted | adr-006.md |
 | 2026-01-03 | 005 | Add Document Generator Skill for Branded Deliverables | Accepted | adr-005.md |
@@ -260,25 +339,50 @@ in reverse chronological order (newest first).
 
 Work items are tracked in Azure DevOps for Luna Foundry development. The table below summarizes key work items in reverse chronological order (newest first).
 
-| ID | Type | Title | Status |
-| ---- | ---- | ------- | ------ |
-| [973](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/973) | Epic | Luna Foundry (Release 1) | Active |
-| [1006](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1006) | User Story | Develop Implement Sub-Agent | New |
-| [1005](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1005) | User Story | Develop Tasks Sub-Agent | New |
-| [1004](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1004) | User Story | Develop Plan Sub-Agent | New |
-| [1003](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1003) | User Story | Develop Specify Sub-Agent | New |
-| [1002](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1002) | User Story | Develop Clarify Sub-Agent | New |
-| [1001](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1001) | User Story | Develop Constitution Sub-Agent | New |
-| [1000](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1000) | Feature | Develop MacroFlow Sub-Agents | New |
-| [999](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/999) | Task | Version & Commit | New |
-| [998](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/998) | Task | Remove/Archive Redundants | New |
-| [997](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/997) | Task | Test Integration | New |
-| [996](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/996) | Task | Apply Neutrality | New |
-| [995](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/995) | Task | Migrate Content | New |
-| [994](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/994) | Task | Update Core File | New |
-| [993](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/993) | Task | Audit Redundancies | New |
-| [992](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/992) | User Story | Clean Up Redundancies in .github Folder | New |
-| [991](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/991) | Feature | Cleanup Luna Foundry Redundancies | New |
+| ID | Status | Type | Title | Priority |
+| ---- | ------ | ---- | ------- | -------- |
+| [1049](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1049) | Closed | Task | Add Error Handling, Dry-Run, and Testing | 2 |
+| [1048](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1048) | Closed | Task | Implement API Update Logic | 2 |
+| [1047](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1047) | Closed | Task | Implement Query Logic | 2 |
+| [1046](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1046) | Closed | Task | Implement CLI Argument Parsing | 2 |
+| [1045](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1045) | Closed | Task | Scaffold Azure CLI Extension Structure | 2 |
+| [1044](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1044) | Closed | Feature | Implement CLI Extension Core Logic | 2 |
+| [1043](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1043) | Closed | Epic | Develop Azure CLI Extension for Setting Multiline Format to Markdown | 2 |
+| [1039](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1039) | Closed | User Story | Develop Complete Requirements-Writing Skill | 2 |
+| [1048](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1048) | Closed | Task | Update SKILL.md with Full Hierarchy Sub-Skills | 3 |
+| [1047](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1047) | Closed | Task | Derive Test Case-Writing Approach and Template | 3 |
+| [1046](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1046) | Closed | Task | Analyze Test Cases Work Items from CSV | 3 |
+| [1045](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1045) | Closed | Task | Derive Task-Writing Approach and Template | 3 |
+| [1044](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1044) | Closed | Task | Analyze Tasks Work Items from CSV | 3 |
+| [1043](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1043) | Closed | Task | Derive User Story-Writing Approach and Template | 3 |
+| [1042](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1042) | Closed | Task | Analyze User Stories Work Items from CSV | 3 |
+| [1041](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1041) | Closed | Task | Derive Requirement-Writing Approach and Template | 3 |
+| [1040](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1040) | Closed | Task | Analyze Requirements Work Items from CSV | 3 |
+| [973](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/973) | Active | Epic | Luna Foundry (Release 1) | 1 |
+| [1006](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1006) | New | User Story | Develop Implement Sub-Agent | 2 |
+| [1005](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1005) | New | User Story | Develop Tasks Sub-Agent | 2 |
+| [1004](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1004) | New | User Story | Develop Plan Sub-Agent | 2 |
+| [1003](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1003) | New | User Story | Develop Specify Sub-Agent | 2 |
+| [1002](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1002) | New | User Story | Develop Clarify Sub-Agent | 2 |
+| [1001](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1001) | New | User Story | Develop Constitution Sub-Agent | 2 |
+| [1000](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/1000) | New | Feature | Develop MacroFlow Sub-Agents | 2 |
+| [999](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/999) | New | Task | Version & Commit | 3 |
+| [998](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/998) | New | Task | Remove/Archive Redundants | 3 |
+| [997](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/997) | New | Task | Test Integration | 3 |
+| [996](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/996) | New | Task | Apply Neutrality | 3 |
+| [995](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/995) | New | Task | Migrate Content | 3 |
+| [994](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/994) | New | Task | Update Core File | 3 |
+| [993](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/993) | New | Task | Audit Redundancies | 3 |
+| [992](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/992) | New | User Story | Clean Up Redundancies in .github Folder | 2 |
+| [991](https://dev.azure.com/acornsoft/d35e9f8b-904f-4c8f-8f84-45f91733586c/_workitems/edit/991) | New | Feature | Cleanup Luna Foundry Redundancies | 2 |
+
+## Discussion
+
+- All work items updated with Area: (ASFT) Luna Foundry, Iteration: 2026.1, Priority: 2 (1 for Epic), Tags: Luna; MacroFlow.
+- Descriptions and Acceptance Criteria added for sub-agent development.
+- Estimates: Original 8 hours, Remaining 8 hours, Completed 0 hours for New items; Adjusted for Active items.
+- Comments added to each work item: "Updated area, iteration, and fields as per Luna Foundry requirements."
+- User Story 1039: Develop Complete Requirements-Writing Skill - Description: As a developer, I want to refine the Requirements-Writing skill to cover the full work item hierarchy (Epic, Feature, Requirement, User Story, Task, Test Case) using real-world examples from CSV data, so that I can create verbose, testable work items for clients. Acceptance Criteria: Skill includes sub-skills with derived approaches and templates for each level; validated against CSV patterns; SKILL.md updated with full hierarchy. Tasks: 1040-1048 as child tasks for analyzing and deriving each level.
 
 ### ADR [Number]: [Title]
 
@@ -292,6 +396,7 @@ Work items are tracked in Azure DevOps for Luna Foundry development. The table b
 
 ### Example ADR 001: Adopt MacroFlow Phases
 
+```markdown
 **Date**: 2026-01-01  
 **Status**: Accepted  
 **Context**: The Luna Foundry requires a structured process for developing prompts
@@ -303,14 +408,26 @@ Specify, Plan, Tasks, Implement.
 
 - Positive: Standardized process reduces errors and improves quality.
 - Negative: May add overhead for simple tasks; requires training.
+```
+
+### ADR 019: Develop Complete Requirements-Writing Skill for Full Work Item Hierarchy
+
+**Date**: 2026-01-10  
+**Status**: Accepted  
+**Context**: Analysis of real-world Azure DevOps work items from client projects revealed the need for a comprehensive Requirements-Writing skill covering the full hierarchy (Epic > Feature > Requirement > User Story > Task > Test Case) to enable verbose, testable outputs for client work item creation. Initial work covered Epics and Features; expansion is required for a 360-degree solution.  
+**Decision**: Refine the Requirements-Writing skill in .github/skills/requirements-writing/ with sub-skills for each hierarchy level, deriving approaches and templates from CSV data analysis, and integrate with MacroFlow for structured development.  
+**Consequences**:  
+
+- Positive: Provides a reusable, data-driven tool for creating high-quality work items, improving client deliverables and reducing manual effort.  
+- Negative: Increases skill complexity and maintenance overhead; requires ongoing validation against evolving work item patterns.
 
 ## Document Metadata
 
-- **Version**: 1.1
-- **Date**: January 7, 2026
+- **Version**: 1.3
+- **Date**: January 10, 2026
 - **Owner**: David Blaszyk (Blaze)
-- **Build Tag**: 1.0.26007.1 (based on GetDayOfYear.ps1 for 2026-01-07)
+- **Build Tag**: 1.0.26010.2 (based on GetDayOfYear.ps1 for 2026-01-10)
 - **Purpose**: Comprehensive guide to MacroFlow in Luna Foundry, including ConOps, ADRs, and plans.
 - **Audience**: Acornsoft developers, AI engineers, stakeholders.
-- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, Conversation-003.md, adr-001.md to adr-016.md.
+- **References**: Luna-Prompt-Foundry.md, Conversation-002.md, Conversation-003.md, adr-001.md to adr-022.md.
 

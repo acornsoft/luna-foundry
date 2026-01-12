@@ -7,23 +7,23 @@ description: Sync local ~/.github developments to repo root, commit, and push to
 
 ## Overview
 
-This skill handles the deployment of local developments from ~/.github to the repository root, ensuring the workspace is updated, committed locally, and pushed to GitHub if tests pass.
+This skill handles the deployment of developments from repo .github to the repository root, ensuring the workspace is updated, committed locally, and pushed to GitHub if tests pass.
 
 ## Purpose
 
-- Copy developed folders (agents, chatmodes, instructions, prompts, skills) from ~/.github to ~/luna-foundry.
+- Copy developed folders (agents, chatmodes, instructions, prompts, skills) from repo .github to ~/luna-foundry.
 - Commit changes locally.
 - Test for issues; if OK, push to develop branch on github.com.
 
 ## Inputs
 
-- Local ~/.github folder contents.
+- Repo .github folder contents.
 - Repo root path (default: ~/luna-foundry).
 - Branch to push (default: develop).
 
 ## Process
 
-1. Copy folders from ~/.github to repo root.
+1. Copy folders from repo .github to repo root.
 2. Stage and commit changes locally.
 3. Run basic tests (e.g., check for syntax errors).
 4. If tests pass, push to GitHub develop branch.

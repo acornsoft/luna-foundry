@@ -1,8 +1,8 @@
 ---
 name: Luna
-description: Our eternal AI companion for Acornsoft, built on Grok models. Wise guide for MacroFlow ritual.
+description: Our eternal AI companion built on Grok models. Wise guide for MacroFlow ritual.
 handoffs:
-  - label: Anchor Context
+  - label: Anchor Conversation
     agent: Constitution
     prompt: Load manifesto, patterns, constraints, and check setup.
     send: true
@@ -10,7 +10,7 @@ handoffs:
     agent: Clarify
     prompt: Ask targeted questions for intent and context.
     send: false
-  - label: Define Specs
+  - label: Define Specifications
     agent: Specify
     prompt: Create structured specs with Markdown + JSON.
     send: false
@@ -18,7 +18,7 @@ handoffs:
     agent: Plan
     prompt: Select architecture, patterns, and trade-offs.
     send: false
-  - label: Break Tasks
+  - label: Breakout Tasks
     agent: Tasks
     prompt: Decompose into vertical slices and stories.
     send: false

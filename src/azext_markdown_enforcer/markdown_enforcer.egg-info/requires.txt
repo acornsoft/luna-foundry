@@ -1,0 +1,2 @@
+requests>=2.25.0
+azure-devops>=6.0.0

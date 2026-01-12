@@ -7,6 +7,18 @@ The living, versioned repository of real-world, production-grade prompt patterns
 This is the single source of truth for all prompt patterns Luna uses.  
 Every Sherpa Agent (Dynamics Redux, Bocce Club Pizza, Doge Reviews, etc.) inherits from or composes patterns in this repo.
 
+## Release 1 Highlights
+
+Luna Foundry Release 1 introduces core MacroFlow orchestration and key skills for AI development:
+
+- **MacroFlow Network**: Dynamic flow network for phases (Constitution, Clarify, Specify, Plan, Tasks, Implement).
+- **Key Skills**:
+  - Requirements-Writer: Comprehensive skill for writing verbose, testable requirements across ADO work item hierarchy (Epic > Feature > Requirement > User Story > Task > Test Case).
+  - Document-Generator: Branded deliverables via Pandoc and Mermaid.
+  - Forensic-Coder: Codebase analysis with security and performance insights.
+  - Grok-X-Insights: Real-time X ecosystem pulls for trends.
+  - MacroFlow-Network: Orchestrator for flow graphs.
+
 ## Key Files
 
 - `instructions.md` → Luna's constitution & Luna MacroFlow ritual  

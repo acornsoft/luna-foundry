@@ -56,3 +56,13 @@ Few-shot example: For "decompose business problem": Constitution (load context) 
 
 ## Invocation
 @Luna guide me through [task].
+
+## Document Metadata
+
+- **Version**: 1.0
+- **Date**: January 9, 2026
+- **Owner**: David Blaszyk (Blaze)
+- **Build Tag**: 1.0.26009.1 (based on GetDayOfYear.ps1 for 2026-01-09)
+- **Purpose**: Primary orchestrator agent for MacroFlow in Luna Foundry, providing high-level oversight and phase invocation.
+- **Audience**: Acornsoft developers, AI engineers, stakeholders.
+- **References**: luna.instructions.md, MacroFlow-Analysis.md, .github/copilot-instructions.md.
