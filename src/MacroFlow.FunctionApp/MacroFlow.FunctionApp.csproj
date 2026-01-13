@@ -25,12 +25,12 @@
 
   <Target Name="CopyPromptFiles" AfterTargets="CopyFilesToOutputDirectory">
     <MakeDir Directories="$(OutputPath)foundry\macroflow" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\constitution.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\clarify.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\specify.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\plan.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\tasks.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
-    <Copy SourceFiles="k:\com.acornsoft365\luna-foundry\src\foundry\macroflow\implement.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/constitution.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/clarify.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/specify.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/plan.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/tasks.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
+    <Copy SourceFiles="../../prompts/implement.prompt.json" DestinationFolder="$(OutputPath)foundry\macroflow\" />
   </Target>
 
 </Project>

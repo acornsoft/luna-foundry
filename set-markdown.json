@@ -1,0 +1,17 @@
+[
+  {
+    "op": "add",
+    "path": "/multilineFieldsFormat/System.Description",
+    "value": "markdown"
+  },
+  {
+    "op": "add",
+    "path": "/multilineFieldsFormat/System.History",
+    "value": "markdown"
+  },
+  {
+    "op": "add",
+    "path": "/multilineFieldsFormat/Microsoft.VSTS.Common.AcceptanceCriteria",
+    "value": "markdown"
+  }
+]
