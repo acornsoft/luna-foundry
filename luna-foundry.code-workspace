@@ -14,6 +14,13 @@
 		"debug.internalConsoleOptions": "neverOpen",
 		"chat.useNestedAgentsMdFiles": true,
 		"chat.useAgentSkills": true,
-		"powershell.cwd": "luna-foundry"
+		"powershell.cwd": "luna-foundry",
+		"chat.tools.terminal.autoApprove": {
+			"/^node --version$/": {
+				"approve": true,
+				"matchCommandLine": true
+			},
+			"az": true
+		}
 	}
 }

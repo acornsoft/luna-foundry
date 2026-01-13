@@ -278,6 +278,29 @@ These insights drive the high-level and detailed plans, emphasizing Markdown-fir
 
 This section documents the ongoing refinement of the Requirements-Writing skill based on analysis of real-world Azure DevOps work items from client projects.
 
+### Cross-Instance Work Item Refinement and Cloning
+
+As of January 12, 2026, the Requirements-Writing skill has been enhanced to support cross-instance Work Item migration and refinement. This capability enables seamless cloning and improvement of requirements from source Azure DevOps instances (e.g., ecolabDevOpsServer) to target instances (e.g., acornsoftDevOpsServer), ensuring alignment with Luna Foundry definitions.
+
+#### Process Overview
+1. **Source Retrieval**: Use MCP tools to fetch Work Item details (ID, title, description, tags, fields) from source instance.
+2. **Analysis and Learning**: Parse content to understand structure, intent, and quality indicators (e.g., completeness of acceptance criteria).
+3. **Refinement**: Apply skill templates to reshape content, adapting to target context (e.g., change "FBU 1C" to "Luna Foundry", add MacroFlow integrations).
+4. **Target Creation**: Generate improved Work Item in target instance, with proper field mapping and Markdown enforcement.
+
+#### Benefits
+- Reduces manual rework in distributed development.
+- Ensures consistent standards across projects.
+- Learns from real examples to improve templates iteratively.
+
+#### Integration with MacroFlow
+This fits into the Specify and Implement phases, using Clarify for source analysis and Plan for refinement strategies. ADR-025 captures the decision to implement this feature.
+
+#### Example Dry Run
+- Source: Epic #831125 from ecolabDevOpsServer ("1C FBU - Release 1").
+- Refined: "Luna Foundry - Release 1" with added MacroFlow objectives.
+- Created in acornsoftDevOpsServer com.ecolab project.
+
 - **Completed Analysis**: The full work item hierarchy (Epic > Feature > Requirement > User Story > Task > Test Case) has been analyzed from SampleProjectPlan-001.csv. Derived approaches for each level include targeted client questions, time breakdowns, content guidelines, and structured templates. Sub-skills added to SKILL.md include Epic-Writing (with sections like Business Objectives, Key Objectives, Requirements), Feature-Writing (Business Context, What It Introduces, Business Requirements), Requirement-Writing (Business Objectives, Business Requirements, Technical Considerations, Expected Deliverables), User Story-Writing (As a... I want... so that... with Gherkin Acceptance Criteria), Task-Writing (Steps and Deliverables), and Test Case-Writing (Minimal descriptions with test steps).
 
 - **Skill Application**: The skill has been successfully applied to the Luna Foundry Release 1 Epic (ID 973) in Azure DevOps, refining the description with a comprehensive, Markdown-formatted template including Business Objectives, Key Objectives, Business Requirements, Technical Requirements, Expected Deliverables, and Acceptance Criteria. This validates the Epic-Writing sub-skill and ensures the Epic meets high-quality, testable standards.
