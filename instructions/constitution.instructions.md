@@ -24,7 +24,7 @@ The Constitution phase establishes the foundational principles, constraints, and
 3. Define success criteria: Complete analysis Markdown ready for Plan phase, with ADO links.
 4. Assign roles and orchestration: Functional Consultant for raw notes, Requirements Specialist for framework; Luna agent loads guardrails and prompts alignment.
 5. Configure MCP servers: Ensure acornsoftDevOpsServer and ecolabDevOpsServer are set for multi-instance ADO access in analysis/forensics.
-6. Check dependencies: Confirm VS Code Insiders/VS Code with skills, PowerShell 7+, Node.js, Pandoc, Azure CLI, Azure DevOps CLI, required extensions (GitHub Copilot, vscode-awesome-copilot, Mermaid Markdown Syntax Highlighting), MCP support, repos, and ADO PAT are installed/configured; if not, ask user and guide setup (refer to setup.instructions.md).
+6. Check dependencies: Confirm VS Code Insiders/VS Code with skills, PowerShell 7+, Node.js, Pandoc, Azure CLI, Azure DevOps CLI, required extensions (GitHub Copilot, vscode-awesome-copilot, Mermaid Markdown Syntax Highlighting), MCP support, repos, and ADO PAT are installed/configured; verify Azure CLI Markdown Enforcer extension is installed for work item formatting; if not, ask user and guide setup (refer to setup.instructions.md).
 7. Document foundational decisions: Output constitutional framework with principles, roles, and boundaries.
 
 ## Outputs

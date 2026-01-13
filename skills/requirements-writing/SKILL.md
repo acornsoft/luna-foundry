@@ -9,6 +9,51 @@ This skill specializes in leveraging Azure DevOps Work Items to write comprehens
 - Generate processes for creating compliant Work Items that meet organizational standards.
 - Integrate with MacroFlow for requirements gathering and refinement.
 
+## Dynamic Refinement and Learning
+
+### Overview
+This skill now supports adaptive learning from source Work Items across Azure DevOps instances. When reading Work Items from external instances (e.g., ecolabDevOpsServer), the skill expands internal knowledge by analyzing tags, descriptions, and fields to identify patterns, emerging themes, and best practices. This ensures MacroFlow remains flexible and evolves without rigidity, incorporating lessons into future refinements.
+
+### Key Principles
+- **Full Naming Convention**: Always use complete terms (e.g., "Work Item" instead of "WI", "Azure DevOps" instead of "ADO") for clarity and professionalism.
+- **Adaptive Paths**: MacroFlow phases (Constitution, Clarify, Specify, Plan, Tasks, Implement) can adjust based on Work Item complexity—e.g., expand Clarify for ambiguous requirements or skip redundant steps.
+- **Cross-Instance Learning**: Retrieve Work Items from source instances, learn from their structure, and refine for target instances (e.g., acornsoftDevOpsServer), ensuring consistency and improvement.
+- **Knowledge Expansion**: Build a dynamic knowledge graph from each Work Item, updating templates and standards organically.
+
+### Process for Cross-Instance Refinement
+1. **Retrieve**: Use Model Context Protocol (MCP) to read Work Items from source Azure DevOps instances.
+2. **Learn**: Analyze tags, descriptions, fields for intent, patterns, and gaps.
+3. **Refine**: Apply Luna Foundry definitions, MacroFlow phases, and AI integrations to enhance content.
+4. **Recreate**: Generate improved Work Items in target instances with proper linking and traceability.
+
+### Work Item Cloning Process
+This skill now supports automated cloning of Work Items from source instances (e.g., ecolabDevOpsServer) to target instances (e.g., acornsoftDevOpsServer), with enhancements for Luna Foundry context.
+
+#### Steps for Cloning
+1. **Retrieve Source Work Item**: Use MCP tools to fetch the Work Item details from the source instance without modification.
+2. **Refine Description**: Convert HTML to Markdown, ensure concise, consistent, styled content readable by functional consultants and business users, no misspellings, grammatically correct.
+3. **Add Luna Perspective**: Populate the Discussion field with Luna Foundry's analysis, including key insights, risks, recommendations, and historical capture for adaptive learning.
+4. Create in Target Instance: Generate the new Work Item in the target project with all required fields set, including System.Description with Markdown format, System.AssignedTo, System.AreaPath, System.IterationPath, Microsoft.VSTS.Common.Priority, Microsoft.VSTS.Common.Risk (if applicable), Microsoft.VSTS.Scheduling.Effort (Story Points), Microsoft.VSTS.Scheduling.StartDate, Microsoft.VSTS.Scheduling.EndDate, and System.Tags. Set multiline field formats to Markdown for System.Description, System.History, Microsoft.VSTS.Common.AcceptanceCriteria, Microsoft.VSTS.TCM.ReproSteps, Microsoft.VSTS.Common.Resolution, and Microsoft.VSTS.TCM.SystemInfo. Clarify acronyms and terms: Identify any acronyms or uncommon terms in the description, add a sorted alphabetical list in the Discussion field with full names and brief relevance descriptions for clarity. Use the MCP create tool with fields array including format for multiline fields.
+5. **Add Luna Comment**: Add a comment noting the cloning, refinements, and format settings.
+6. **Link and Trace**: Establish parent-child links and update internal knowledge for future refinements.
+
+#### Example: Cloning Feature 834318
+- Retrieved from "Dynamics 365 Convergence" project in ecolabDevOpsServer.
+- Refined description to Markdown, preserving original intent.
+- Added Discussion comment: "Luna Foundry perspective: [Analysis]. Historical capture: [Original context]."
+- Created as Feature 1073 in "com.ecolab" project in acornsoftDevOpsServer with empty Description.
+- Attempted Markdown enforcement (failed due to auth issues), proceeded with content update.
+- Updated with Markdown content, added Luna AI-First comment noting format remains HTML.
+- Linked as child to Epic 1065 for traceability.
+
+#### Integration with MacroFlow
+- Enhances the Clarify and Specify phases with cross-instance insights.
+- Supports flow network for parallel cloning and refinement.
+
+### Integration with MacroFlow
+- Enhances the Specify and Plan phases with learned insights.
+- Supports flow network model for parallel, adaptive execution.
+
 ## Inputs
 - Azure DevOps instance connection (e.g., ecolabDevelopmentServer).
 - Specific releases or projects (e.g., FBU 1C Release 1 and 2).
@@ -74,8 +119,12 @@ This skill now integrates with the Azure CLI Markdown Enforcer extension to auto
 ### Fields Enforced
 The extension automatically enforces Markdown format on:
 - `System.Description` - Main work item description
+- `System.History` - Discussion/comments history
 - `Microsoft.VSTS.Common.AcceptanceCriteria` - Acceptance criteria for requirements/stories
-- `Microsoft.VSTS.TCM.ReproSteps` - Test case reproduction steps
+- `Microsoft.VSTS.TCM.ReproSteps` - Steps to reproduce for bugs
+- `Microsoft.VSTS.Common.Resolution` - Resolution details for impediments
+- `Microsoft.VSTS.TCM.SystemInfo` - System information for bugs/feedback
+- Custom multiline text fields (PlainText or HTML type)
 
 ### Integration with Work Item Creation Process
 
@@ -302,10 +351,13 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
   **ID**: Epic-[Number]
   **Title**: [Title]
   **Description**: [High-level goal, business value.]
-  **Priority**: [Critical/High/Medium/Low]
-  **Assigned To**: [Team Lead]
-  **State**: [New/Active/Resolved/Closed]
-  **Discussion**: [Initial notes.]
+  **Fields to Set Separately**:
+  - Priority: [Critical/High/Medium/Low]
+  - Assigned To: david@acornsoft365.com
+  - Area Path: FBU 1C
+  - Iteration Path: 2026.1
+  - State: [New/Active/Resolved/Closed]
+  - Discussion: **Initial Notes:** [Formatted notes with bullets if needed.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
   ```
 
 - **Feature Template**:
@@ -314,11 +366,14 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
   **ID**: Feature-[Number]
   **Title**: [Title]
   **Description**: [Detailed goal, deliverables.]
-  **Priority**: [High/Medium/Low]
-  **Assigned To**: [Owner]
-  **State**: [Active]
-  **Discussion**: [Input.]
-  **Story Points**: [Estimate]
+  **Fields to Set Separately**:
+  - Priority: [High/Medium/Low]
+  - Assigned To: david@acornsoft365.com
+  - Area Path: FBU 1C
+  - Iteration Path: 2026.1
+  - State: [Active]
+  - Discussion: [Input.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+  - Effort: [Estimate]
   ```
 
 - **Requirement Template**:
@@ -329,11 +384,14 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
   **Description**: [Specs, constraints.]
   **Acceptance Criteria**:
   - [Criteria 1]
-  **Priority**: [High/Medium/Low]
-  **Assigned To**: [Analyst]
-  **State**: [Active]
-  **Discussion**: [Clarifications.]
-  **Story Points**: [Estimate]
+  **Fields to Set Separately**:
+  - Priority: [High/Medium/Low]
+  - Assigned To: david@acornsoft365.com
+  - Area Path: FBU 1C
+  - Iteration Path: 2026.1
+  - State: [Active]
+  - Discussion: [Clarifications.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+  - Effort: [Estimate]
   ```
 
 - **User Story Template**:
@@ -344,22 +402,28 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
   **Description**: [Context, dependencies.]
   **Acceptance Criteria**:
   - [Measurable criteria]
-  **Priority**: [High/Medium/Low]
-  **Assigned To**: [Developer]
-  **State**: [Active]
-  **Discussion**: [Questions.]
-  **Story Points**: [Estimate]
-  **Hours**: Original: [X], Remaining: [Y], Real: [Z]
+  **Fields to Set Separately**:
+  - Priority: [High/Medium/Low]
+  - Assigned To: developer@acornsoft365.com
+  - Area Path: FBU 1C
+  - Iteration Path: 2026.1
+  - State: [Active]
+  - Discussion: [Questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+  - Effort: [Estimate]
+  - Hours: Original: [X], Remaining: [Y], Real: [Z]
   ```
 
 - **Task Template**:
   ```
   - **Task-[Number]**: [Title]
     **Description**: [Steps.]
-    **State**: [To Do/In Progress/Done]
-    **Assigned To**: [Assignee]
-    **Discussion**: [Notes.]
-    **Hours**: Original: [X], Remaining: [Y], Real: [Z]
+    **Fields to Set Separately**:
+    - State: [To Do/In Progress/Done]
+    - Assigned To: developer@acornsoft365.com
+    - Area Path: FBU 1C
+    - Iteration Path: 2026.1
+    - Discussion: [Notes.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+    - Effort: Original: [X], Remaining: [Y], Real: [Z]
   ```
 
 - **Test Case Template**:
@@ -368,10 +432,13 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
   **ID**: TC-[Number]
   **Title**: [Title]
   **Description**: [Steps, expected results.]
-  **Priority**: [High/Medium/Low]
-  **Assigned To**: [Tester]
-  **State**: [Active]
-  **Discussion**: [Edge cases.]
+  **Fields to Set Separately**:
+  - Priority: [High/Medium/Low]
+  - Assigned To: david@acornsoft365.com
+  - Area Path: FBU 1C
+  - Iteration Path: 2026.1
+  - State: [Active]
+  - Discussion: [Edge cases.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
   ```
 
 ### Standards
@@ -381,6 +448,21 @@ az boards query --wiql "YOUR_QUERY_HERE" --output table
 - AC: 3-5 SMART bullets.
 - Priorities/States: Standard.
 - Completeness: Require key fields.
+- Assignments: All Work Items assigned to david@acornsoft365.com, except User Stories and Tasks assigned to developer@acornsoft365.com.
+- Area Path: FBU 1C.
+- Iteration Path: 2026.1.
+- Discussion: Format with Markdown for readability—use headings, bullets, bold for key points. Ensure paragraphs are concise and accessible for Functional Consultants and Business Users. Include a sorted alphabetical list of acronyms and uncommon terms with full names and brief relevance descriptions for clarity.
+- Acronyms and Terms: When encountering acronyms or uncommon terms, note them in the Discussion with full name and brief relevance description for clarity. Sort the list alphabetically by acronym. Apply to ALL work item types (Epic, Feature, Requirement, User Story, Task, Test Case).
+
+### Work Item Decomposition Hierarchy
+The requirements-writing process follows a structured hierarchy for decomposing work items, ensuring scalability and clarity in project management. Use the full decomposition path for comprehensive traceability:
+
+- Epics are decomposed into Features
+- Features are decomposed into Requirements
+- Requirements are decomposed into User Stories
+- User Stories are decomposed into Tasks and Test Cases that fulfill the established Acceptance Criteria
+
+This full hierarchy supports thorough breakdown, allowing no shortcuts to maintain consistency and testability.
 
 ### Best Practices
 - Enforce hierarchy.
@@ -430,6 +512,7 @@ Based on real-world examples:
 ## Epic: [Title]
 **ID**: Epic-[Number]
 **Title**: [Descriptive Title Reflecting Business Objective]
+
 **Description**:
 ### Business Objectives
 [High-level goals, business value, and strategic alignment.]
@@ -455,11 +538,14 @@ Based on real-world examples:
 - [Criteria 2: ...]
 - [Criteria 3: ...]
 
-**Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Epic Owner or Team Lead]
-**State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
-**Tags**: [Relevant tags for filtering]
+**Fields to Set Separately**:
+- Priority: [Critical/High/Medium/Low]
+- Assigned To: david@acornsoft365.com
+- Area Path: FBU 1C
+- Iteration Path: 2026.1
+- State: [New/Active/Resolved/Closed]
+- Discussion: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+- Tags: [Relevant tags for filtering]
 ```
 
 ### Integration with MacroFlow
@@ -531,13 +617,17 @@ Based on real-world examples:
 - [Criteria 1: Testable condition for completion]
 - [Criteria 2: ...]
 - [Criteria 3: ...]
-
-**Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Feature Owner or Lead Developer]
-**State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
-**Tags**: [Relevant tags for filtering]
 ```
+
+**Fields to Set Separately**:
+- Priority: [Critical/High/Medium/Low]
+- Assigned To: david@acornsoft365.com
+- Area Path: FBU 1C
+- Iteration Path: 2026.1
+- State: [New/Active/Resolved/Closed]
+- Discussion: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+- Tags: [Relevant tags for filtering]
+- Effort: [Story Points estimate]
 
 ### Integration with MacroFlow
 - Use in the Plan phase to decompose Epics into Features.
@@ -605,9 +695,11 @@ Based on real-world examples:
 - [Criteria 3: ...]
 
 **Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Requirement Owner or Analyst]
+**Assigned To**: david@acornsoft365.com
+**Area Path**: FBU 1C
+**Iteration Path**: 2026.1
 **State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
+**Discussion**: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
 **Tags**: [Relevant tags for filtering]
 ```
 
@@ -650,6 +742,7 @@ Based on real-world examples:
 ## User Story: As a [user role], I want [goal] so that [benefit].
 **ID**: US-[Number]
 **Title**: [Descriptive Title Reflecting the User Need]
+
 **Description**:
 [Context, dependencies, and rationale.]
 
@@ -660,11 +753,15 @@ Based on real-world examples:
   Then [expected outcome]
 - [Additional scenarios as needed]
 
-**Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Developer or Team]
-**State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
-**Tags**: [Relevant tags for filtering]
+**Fields to Set Separately**:
+- Priority: [Critical/High/Medium/Low]
+- Assigned To: developer@acornsoft365.com
+- Area Path: FBU 1C
+- Iteration Path: 2026.1
+- State: [New/Active/Resolved/Closed]
+- Discussion: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+- Tags: [Relevant tags for filtering]
+- Effort: [Story Points estimate]
 ```
 
 ### Integration with MacroFlow
@@ -706,6 +803,7 @@ Based on real-world examples:
 ## Task: [Title]
 **ID**: Task-[Number]
 **Title**: [Descriptive Title Reflecting the Specific Action]
+
 **Description**:
 [Context and rationale for the task.]
 
@@ -717,11 +815,15 @@ Based on real-world examples:
 - [Criteria 1: Testable condition for completion]
 - [Criteria 2: ...]
 
-**Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Developer or Assignee]
-**State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
-**Tags**: [Relevant tags for filtering]
+**Fields to Set Separately**:
+- Priority: [Critical/High/Medium/Low]
+- Assigned To: developer@acornsoft365.com
+- Area Path: FBU 1C
+- Iteration Path: 2026.1
+- State: [New/Active/Resolved/Closed]
+- Discussion: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+- Tags: [Relevant tags for filtering]
+- Effort: [Hours estimate]
 ```
 
 ### Integration with MacroFlow
@@ -763,6 +865,7 @@ Based on real-world examples:
 ## Test Case: [Title]
 **ID**: TC-[Number]
 **Title**: [Descriptive Title Reflecting the Test Scenario]
+
 **Description**:
 [Context and rationale for the test.]
 
@@ -778,11 +881,14 @@ Based on real-world examples:
 - [Result 1: Expected outcome.]
 - [Result 2: ...]
 
-**Priority**: [Critical/High/Medium/Low]
-**Assigned To**: [Tester]
-**State**: [New/Active/Resolved/Closed]
-**Discussion**: [Initial notes or questions.]
-**Tags**: [Relevant tags for filtering]
+**Fields to Set Separately**:
+- Priority: [Critical/High/Medium/Low]
+- Assigned To: david@acornsoft365.com
+- Area Path: FBU 1C
+- Iteration Path: 2026.1
+- State: [New/Active/Resolved/Closed]
+- Discussion: [Initial notes or questions.] **Acronyms and Terms:** [Sorted alphabetical list with full names and brief descriptions if any acronyms/terms present.] (Set as System.History with Markdown format)
+- Tags: [Relevant tags for filtering]
 ```
 
 ### Integration with MacroFlow

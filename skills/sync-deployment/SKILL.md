@@ -1,39 +1,39 @@
 ---
-name: update-local-deployment
-description: Update local deployment: Copy repo .github folders to repo root, commit, merge to main, and push to GitHub.
+name: sync-deployment
+description: Sync local ~/.github developments to repo root, commit, and push to GitHub.
 ---
 
-# Update-Local-Deployment Skill
+# Sync-Deployment Skill
 
 ## Overview
 
-This skill handles updating the local deployment by copying developed folders from the repo's .github to the repository root, committing changes, merging to main, and pushing to GitHub.
+This skill handles the deployment of developments from repo .github to the repository root, ensuring the workspace is updated, committed locally, and pushed to GitHub if tests pass.
 
 ## Purpose
 
-- Copy developed folders (agents, chatmodes, instructions, prompts, skills, workflows) from repo .github to ~/luna-foundry.
+- Copy developed folders (agents, chatmodes, instructions, prompts, skills) from repo .github to ~/luna-foundry.
 - Commit changes locally.
-- Merge develop into main.
-- Push to main branch on GitHub.
+- Test for issues; if OK, push to develop branch on github.com.
 
 ## Inputs
 
 - Repo .github folder contents.
 - Repo root path (default: ~/luna-foundry).
-- Branches to merge and push (develop to main).
+- Branch to push (default: develop).
 
 ## Process
 
 1. Copy folders from repo .github to repo root.
 2. Stage and commit changes locally.
-3. Merge develop into main.
-4. Push to GitHub main branch.
+3. Run basic tests (e.g., check for syntax errors).
+4. If tests pass, push to GitHub develop branch.
+5. If tests fail, abort push and notify.
 
 ## Outputs
 
-- Updated repo root with synced folders.
+- Updated repo with synced folders.
 - Committed changes.
-- Merged and pushed to GitHub main.
+- Pushed to GitHub (if successful).
 
 ## Grok Integration
 
@@ -41,20 +41,19 @@ Use Grok for any validation or error checking. Temperature: 0.3 for precise oper
 
 ## Next Phase
 
-Deployment updated; ready for further development or testing.
+Deployment complete; ready for further development.
 
 ## Instructions
 
-1. Invoke via @Luna: "@Luna, update local deployment to repo and push to main."
-2. Ensure repo .github has the latest developments.
-3. Manual fallback: Run .\scripts\Update-Local-Deployment.ps1 (if script exists).
+1. Invoke via @Luna: "@Luna, sync deployment to repo and push to develop."
+2. Ensure ~/.github has the latest developments.
+3. Manual fallback: Run .\scripts\Sync-Deployment.ps1.
 
 ## Examples
 
-- Input: Changes in repo .github.
-- Output: Repo root updated, merged to main, and pushed.
+- Input: Local changes in ~/.github.
+- Output: Repo updated and pushed.
 
 ## Learned Patterns
 
-- Always merge to main after testing to maintain stability.
-- Copy only necessary folders to avoid clutter.
+- Always test before push to avoid breaking main branch.

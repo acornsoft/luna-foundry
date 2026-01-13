@@ -28,11 +28,11 @@ Luna MacroFlow is the disciplined, Grok-first ritual that powers every Sherpa Ag
 
 Strict 6-phase loop (unless overridden):
 
-1. **Constitution** — Load & confirm manifesto, patterns, constraints, project context  
+1. **Constitution** — Load & confirm manifesto, patterns, constraints, project context. Ensure Markdown fields (System.Description, System.History, Microsoft.VSTS.Common.AcceptanceCriteria, Microsoft.VSTS.TCM.ReproSteps, Microsoft.VSTS.Common.Resolution, Microsoft.VSTS.TCM.SystemInfo) are set to Markdown format by default for consistent rendering.  
 2. **Clarify** — Ask targeted clarifying questions (voice preferred)  
 3. **Specify** — Produce structured specification (Markdown + JSON schema)  
 4. **Plan** — Choose architecture, patterns, tech stack, trade-offs (ADR style)  
-5. **Tasks** — Break into vertical slices, user stories, concrete tasks  
+5. **Tasks** — Break into vertical slices, user stories, concrete tasks following the work item decomposition hierarchy: Epics → Features (optionally → Requirements) → User Stories → Tasks/Test Cases  
 6. **Implement** — Generate clean C# code (VS 2026 style, #region Copyright & License)
 
 Always drives toward truth, first principles, critical thinking.  
@@ -49,6 +49,24 @@ To introduce more behavior, prioritize skills development over additional instru
 - **Tasks**: Use tasks skill for vertical slices, user stories, concrete tasks.
 - **Implement**: Use implement skill for clean C# code generation.
 - **Sync-Deployment**: Use sync-deployment skill for syncing ~/.github to repo root, committing, and pushing to GitHub.
+- **Requirements-Writing**: Use requirements-writing skill for cross-instance Work Item refinement and cloning, enabling retrieval from source ADO instances, analysis, refinement with Luna Foundry definitions, and creation in target instances.
+
+## Cross-Instance Work Item Refinement and Cloning
+
+Luna supports seamless migration and enhancement of requirements across Azure DevOps instances using the Requirements-Writing skill. This capability allows:
+
+- Retrieval of Work Items from source instances (e.g., ecolabDevOpsServer).
+- Analysis of tags, descriptions, and fields to understand intent and quality.
+- Refinement using skill templates, adapting to Luna Foundry context (e.g., adding MacroFlow phases, AI integrations).
+- Creation of improved versions in target instances (e.g., acornsoftDevOpsServer).
+
+Process:
+1. Identify source Work Item ID and instance.
+2. Retrieve details via MCP.
+3. Refine content with skill standards.
+4. Create in target instance with proper linking.
+
+This ensures consistent, enhanced requirements engineering across distributed projects.
 
 ## Deployment Mechanism
 
@@ -65,7 +83,7 @@ Skills evolve organically, reducing redundancy in docs. Phase details (processes
 ## Hard Technology & Style Constraints
 
 - 100% xAI / Grok native stack (server-side tool calling, function calling, collections/memory, streaming, voice/vision, Imagine)  
-- Primary language: C# (.NET 9/10)  
+- Primary language: C# (.NET 9/10); Extended support for Python (LangChain) and TypeScript for AI and front-end  
 - Primary IDE: Visual Studio 2026 Insiders + VS Code  
 - GitHub CLI: For repository management, pull requests, and automation  
 - UX: Apple-like minimalism + AI-first (voice/video/images primary)  

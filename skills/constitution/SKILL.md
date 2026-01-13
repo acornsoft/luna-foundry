@@ -29,7 +29,7 @@ The Constitution phase establishes the foundational principles, constraints, and
 3. Define success criteria: Complete analysis Markdown ready for Plan phase, with ADO links.
 4. Assign roles and orchestration: Functional Consultant for raw notes, Requirements Specialist for framework; Luna agent loads guardrails and prompts alignment.
 5. Configure MCP servers: Ensure acornsoftDevOpsServer are set for multi-instance ADO access in analysis/forensics.
-6. Check dependencies: Confirm VS Code Insiders/VS Code with skills, PowerShell 7+, Node.js, Pandoc, Azure CLI, Azure DevOps CLI, required extensions (GitHub Copilot, vscode-awesome-copilot, Mermaid Markdown Syntax Highlighting), MCP support, repos, and ADO PAT are installed/configured; if not, ask user and guide setup (refer to setup.instructions.md). Verify access to Azure DevOps via MCP Server (acornsoftDevOpsServer and ecolabDevOpsServer in mcp.json) for work item tracking and artifact links. Always check project list access on both servers to ensure connectivity; make ecolabDevOpsServer optional in future if access issues persist.
+6. Check dependencies: Confirm VS Code Insiders/VS Code with skills, PowerShell 7+, Node.js, Pandoc, Azure CLI, Azure DevOps CLI, required extensions (GitHub Copilot, vscode-awesome-copilot, Mermaid Markdown Syntax Highlighting), MCP support, repos, and ADO PAT are installed/configured; test VS Code (code --version) and VS Code Insiders (code-insiders --version) versions; if not, ask user and guide setup (refer to setup.instructions.md). Verify access to Azure DevOps via MCP Server (acornsoftDevOpsServer in mcp.json) for work item tracking and artifact links. Ensure multiline fields (e.g., System.Description, System.History, Microsoft.VSTS.TCM.ReproSteps, Microsoft.VSTS.Common.Resolution) default to Markdown format at the organizational level for consistent rendering; if not configured, run az devops invoke to set them to Markdown.
 7. Document foundational decisions: Output constitutional framework with principles, roles, and boundaries.
 
 ## Outputs
@@ -38,6 +38,7 @@ The Constitution phase establishes the foundational principles, constraints, and
 - Key principles, constraints, and role assignments
 - Dependency confirmation (e.g., VS Code, PowerShell 7, Node.js, Pandoc, extensions, repos setup)
 - Alignment confirmation with xAI ecosystem and ADO integration
+- Confirmation of multiline field formats set to Markdown (e.g., System.Description, System.History)
 
 ## Grok Integration
 
