@@ -24,3 +24,6 @@ Set-Location $RepoRoot
 git add .
 git commit -m "Sync local ~/.github development to repo"
 git push origin develop
+git checkout main
+git merge develop
+git push origin main

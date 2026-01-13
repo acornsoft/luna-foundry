@@ -45,9 +45,10 @@ Deployment complete; ready for further development.
 
 ## Instructions
 
-1. Invoke via @Luna: "@Luna, sync deployment to repo and push to develop."
-2. Ensure ~/.github has the latest developments.
-3. Manual fallback: Run .\scripts\Sync-Deployment.ps1.
+1. Invoke via @Luna: "@Luna please sync Local Deployment, then update develop and main branches." or "@Luna, update local deployment to repo and push to main."
+2. This runs the Sync-Deployment.ps1 script, which copies folders from .github to root, commits, pushes to develop, merges to main, and pushes to main.
+3. Ensure repo .github has the latest developments.
+4. Manual fallback: Run .\skills\sync-deployment\scripts\Sync-Deployment.ps1.
 
 ## Examples
 
